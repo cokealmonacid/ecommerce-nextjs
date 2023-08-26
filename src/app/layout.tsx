@@ -1,7 +1,10 @@
-import Navbar from '@/components/Navbar'
 import './globals.css'
+
 import type { Metadata } from 'next'
 import { Courier_Prime } from 'next/font/google'
+
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const courier = Courier_Prime({
   weight: ['400', '700'],
@@ -23,6 +26,7 @@ export default function RootLayout({
       <body className={courier.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   )

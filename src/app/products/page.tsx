@@ -1,6 +1,12 @@
+import ProductsWrapper from '@/components/ProductsWrapper';
+import { products } from '@/utils/data';
+
 const Products = () => {
   return (
-    <div>Products</div>
+    <ProductsWrapper
+      title={"ultimos productos"}
+      products={products}
+    />
   )
 }
 

@@ -7,16 +7,12 @@ import MenuMobile from './MenuMobile'
 import Menu from './Menu'
 
 const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false)
-  const [showMobileMenu, setShowMobileMenu] = useState(false)
+  const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false })
 
-  const handleMobileMenu = () => {
-    setShowMobileMenu(!showMobileMenu)
+  const handleMenuVisibility = (opt: string) => {
+    setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] })
   }
 
-  const handleMenu = () => {
-    setShowMenu(!showMenu)
-  }
 
   return (
     <>
@@ -24,10 +20,10 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center px-4">
           <div className="hidden md:flex flex-row gap-4 flex-1">
             <Link href="/"><h1>Home</h1></Link>
-            <div className="cursor-pointer" onClick={() => handleMenu()}><h1>Productos</h1></div>
+            <div className="cursor-pointer" onClick={() => handleMenuVisibility('desktop')}><h1>Productos</h1></div>
             <Link href="/contact"><h1>Contacto</h1></Link>
           </div>
-          <div className="md:hidden flex-1" onClick={() => handleMobileMenu()}>
+          <div className="md:hidden flex-1" onClick={() => handleMenuVisibility('mobile')}>
             <Image src="/menu.png" alt="Menu" width={30} height={30} />
           </div>
           <Link href="/">
@@ -39,8 +35,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {showMenu && <Menu />}
-      {showMobileMenu && <MenuMobile handleMobileMenu={handleMobileMenu} />}
+      {menuVisibility.desktop && <Menu handleMenu={handleMenuVisibility}  />}
+      {menuVisibility.mobile && <MenuMobile handleMenu={handleMenuVisibility} />}
     </>
   )
 }
