@@ -18,7 +18,7 @@ const Slider = () => {
   }, [])
 
   return (
-    <div className="flex flex-col h-[300px] md:h-[600px] lg:flex-row z-0">
+    <div className="flex flex-col h-[300px] md:h-[600px] lg:flex-row">
       <div className="flex-1 w-full relative animate-fade-in-down">
         <Image src={imagesSlider[currentSlide].image} alt="" fill className="object-cover" />
       </div>
