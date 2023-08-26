@@ -1,9 +1,9 @@
-import Image from 'next/image'
+import Slider from "@/components/Slider";
 
 export default function Home() {
   return (
     <main>
-      <h1>Home</h1>
+      <Slider />
     </main>
   )
 }
