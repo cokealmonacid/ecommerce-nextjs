@@ -18,7 +18,7 @@ const Navbar = () => {
     <>
       <div className="border-b-2 border-b-stone-800 py-2">
         <div className="container mx-auto flex items-center px-4">
-          <div className="hidden md:flex flex-row gap-4 flex-1">
+          <div className="hidden md:flex flex-row gap-20 flex-1">
             <Link href="/"><h1>Home</h1></Link>
             <div className="cursor-pointer" onClick={() => handleMenuVisibility('desktop')}><h1>Productos</h1></div>
             <Link href="/contact"><h1>Contacto</h1></Link>
