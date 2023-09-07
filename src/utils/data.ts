@@ -57,8 +57,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis, pharetra porta tortor. Sed commodo pellentesque feugiat. Donec efficitur finibus dolor ac commodo. Nullam vitae lacus pellentesque, rhoncus metus et, consectetur risus. Maecenas et odio vitae ante sollicitudin rhoncus ac sit amet neque. Quisque condimentum quis orci vitae pulvinar.',
     category_id: 3,
     brand: 'Independent',
-    quantity: 1,
-    price: '49.990',
+    price: 49990,
     slug: 'trucks-148-hollow-kingping',
   },
   {
@@ -68,8 +67,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category_id: 3,
     brand: 'Ace trucks',
-    quantity: 1,
-    price: '49.990',
+    price: 49990,
     slug: 'trucks-150',
   },
   {
@@ -79,8 +77,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu.',
     category_id: 1,
     brand: 'Gangsta',
-    quantity: 1,
-    price: '32.990',
+    price: 32990,
     slug: 'willy-munoz-pro-x-8.25',
   },
   {
@@ -90,8 +87,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis.',
     category_id: 1,
     brand: 'WKND',
-    quantity: 1,
-    price: '42.990',
+    price: 42990,
     slug: 'trevon-board-x-8.15',
   },
   {
@@ -101,8 +97,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     category_id: 1,
     brand: 'WKND',
-    quantity: 1,
-    price: '42.990',
+    price: 42990,
     slug: 'maloouf-x-8.0',
   },
   {
@@ -112,8 +107,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed.',
     category_id: 8,
     brand: 'Delakalle',
-    quantity: 1,
-    price: '10.990',
+    price: 10990,
     slug: 'gorro-de-lana',
   },
   {
@@ -123,8 +117,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis, pharetra porta tortor.',
     category_id: 1,
     brand: 'Gangsta',
-    quantity: 1,
-    price: '32.990',
+    price: 32990,
     slug: 'gangsta-series-x-8.0',
   },
   {
@@ -134,8 +127,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis, pharetra porta tortor.',
     category_id: 1,
     brand: 'Gangsta',
-    quantity: 1,
-    price: '32.990',
+    price: 32990,
     slug: 'gangsta-tag-x-8.1',
   },
   {
@@ -145,8 +137,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category_id: 3,
     brand: 'Independent',
-    quantity: 1,
-    price: '49.990',
+    price: 49990,
     slug: 'trucks-190.hollow',
   },
   {
@@ -156,8 +147,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu.',
     category_id: 4,
     brand: 'Speed demons',
-    quantity: 1,
-    price: '9.990',
+    price: 9990,
     slug: 'ruedas-58-mm-101a',
   },
   {
@@ -167,8 +157,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis, pharetra porta tortor. Sed commodo pellentesque feugiat. Donec efficitur finibus dolor ac commodo. Nullam vitae lacus pellentesque, rhoncus metus et, consectetur risus. Maecenas et odio vitae ante sollicitudin rhoncus ac sit amet neque. Quisque condimentum quis orci vitae pulvinar.',
     category_id: 4,
     brand: 'Globe',
-    quantity: 1,
-    price: '29.990',
+    price: 29990,
     slug: 'ruedas-globe-54-mm-98a',
   },
   {
@@ -178,8 +167,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category_id: 4,
     brand: 'Spitfire',
-    quantity: 1,
-    price: '29.990',
+    price: 29990,
     slug: 'ruedas-54-mm-100a',
   },
   {
@@ -189,8 +177,7 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis, pharetra porta tortor.',
     category_id: 1,
     brand: 'Gangsta',
-    quantity: 1,
-    price: '32.990',
+    price: 32990,
     slug: 'gangsta-big-poppa-x-8.3',
   },
   {
@@ -200,8 +187,51 @@ export const products: Product[] = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     category_id: 1,
     brand: 'Sunrise',
-    quantity: 1,
-    price: '32.990',
+    price: 32990,
     slug: 'joaquin-soto-pro-board-x-8.0',
+  },
+]
+
+
+export const productsCart: Product[] = [
+  {
+    id: 1,
+    img: '/temporary/prod1.webp',
+    title: 'Trucks 148 hollow kingping',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis, pharetra porta tortor. Sed commodo pellentesque feugiat. Donec efficitur finibus dolor ac commodo. Nullam vitae lacus pellentesque, rhoncus metus et, consectetur risus. Maecenas et odio vitae ante sollicitudin rhoncus ac sit amet neque. Quisque condimentum quis orci vitae pulvinar.',
+    category_id: 3,
+    brand: 'Independent',
+    price: 49990,
+    slug: 'trucks-148-hollow-kingping',
+  },
+  {
+    id: 2,
+    img: '/temporary/prod2.webp',
+    title: 'Trucks 150',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    category_id: 3,
+    brand: 'Ace trucks',
+    price: 49.990,
+    slug: 'trucks-150',
+  },
+  {
+    id: 3,
+    img: '/temporary/prod3.webp',
+    title: 'Willy Muñoz Pro x 8.25',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu.',
+    category_id: 1,
+    brand: 'Gangsta',
+    price: 32990,
+    slug: 'willy-munoz-pro-x-8.25',
+  },
+  {
+    id: 4,
+    img: '/temporary/prod4.webp',
+    title: 'Trevon board x 8.15',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nibh ut lacus viverra convallis sed nec arcu. Nullam arcu libero, facilisis nec magna quis.',
+    category_id: 1,
+    brand: 'WKND',
+    price: 42990,
+    slug: 'trevon-board-x-8.15',
   },
 ]

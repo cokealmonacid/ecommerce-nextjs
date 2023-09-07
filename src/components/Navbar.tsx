@@ -3,11 +3,13 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { useCartStore } from '@/utils/store'
 import MenuMobile from './MenuMobile'
 import Menu from './Menu'
 
 const Navbar = () => {
   const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false })
+  const { totalItems} = useCartStore()
 
   const handleMenuVisibility = (opt: string) => {
     setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] })
@@ -18,7 +20,7 @@ const Navbar = () => {
     <>
       <div className="border-b-2 border-b-stone-800 py-2">
         <div className="container mx-auto flex items-center px-4">
-          <div className="hidden md:flex flex-row gap-20 flex-1">
+          <div className="hidden md:flex flex-row gap-10 lg:gap-20 flex-1">
             <Link href="/"><h1>Home</h1></Link>
             <div className="cursor-pointer" onClick={() => handleMenuVisibility('desktop')}><h1>Productos</h1></div>
             <Link href="/contact"><h1>Contacto</h1></Link>
@@ -31,7 +33,12 @@ const Navbar = () => {
           </Link>
           <div className="flex flex-row gap-8 flex-1 justify-end">
             <a href="https://www.instagram.com/delakalleskateshop/"><Image src="/instagram.png" alt="Delakalle Skateshop instagram" width={28} height={28} /></a>
-            <Image src="/cart.png" alt="Delakalle Skateshop carro de compras" width={30} height={30} />
+            <Link href="/cart">
+              <Image src="/cart.png" alt="Delakalle Skateshop carro de compras" width={30} height={30} />
+              {
+                totalItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full px-2 py-1 text-xs flex justify-center items-center ml-5 top-5">{totalItems}</span>
+              }
+            </Link>
           </div>
         </div>
       </div>

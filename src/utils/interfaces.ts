@@ -15,8 +15,7 @@ export interface Product {
   img: string;
   category_id: number;
   brand: string;
-  quantity: number;
-  price: string;
+  price: number;
   slug: string;
 }
 
@@ -31,4 +30,30 @@ export interface ProductsWrapperProps {
   showed_products?: number; 
   show_button?: boolean;
   button?: ButtonProps;
+}
+
+export interface CartWrapperProps {
+  products: CartItem[];
+}
+
+export interface CartItem {
+  id: number;
+  title: string;
+  img: string;
+  category_id: number;
+  brand: string;
+  price: number;
+  quantity: number;
+}
+
+export interface Cart {
+  products: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+};
+
+
+export interface Actions {
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (item: CartItem) => void;
 }

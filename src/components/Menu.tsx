@@ -18,7 +18,7 @@ const Menu = ({ handleMenu }: MenuProps) => {
         <div onClick={() => handleClick('desktop', '/products')}><h2 className="text-white uppercase cursor-pointer">Ver todos</h2></div>
         {
           categories.map((category: Category) => (
-              <div onClick={() => handleClick('desktop', `/products/${category.slug}`)} key={category.id}>
+              <div onClick={() => handleClick('desktop', `/categories/${category.slug}`)} key={category.id}>
                 <h2 className="text-white uppercase cursor-pointer">{category.title}</h2>
               </div>
             )

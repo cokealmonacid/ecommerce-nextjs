@@ -1,14 +1,35 @@
+'use client'
 import Image from 'next/image'
-import Link from 'next/link'
+import { toast } from 'react-toastify'
 
+import { useCartStore } from '@/utils/store'
 import { products } from '@/utils/data'
 import { Product } from '@/utils/interfaces'
-import Divider from '@/components/Divider';
-import ProductsWrapper from '@/components/ProductsWrapper';
+import Divider from '@/components/Divider'
+import ProductsWrapper from '@/components/ProductsWrapper'
 
+/* 
+POR AGREGAR:
+- Efecto ripple en botón agregar al carro
+*/
 const ProductDetail = ({ params }: { params: {slug: string} }) => {
-  const product = products.filter((product: Product) => product.slug === params.slug )[0];
-  const relatedProducts = products.filter((item: Product) =>  item.category_id === product.category_id && item.id !== product.id);
+  const product = products.filter((product: Product) => product.slug === params.slug )[0]
+  const relatedProducts = products.filter((item: Product) =>  item.category_id === product.category_id && item.id !== product.id)
+  const { addToCart } = useCartStore()
+
+  const handleAddToCartClick = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      img: product.img,
+      category_id: product.category_id,
+      brand: product.brand,
+      price: product.price,
+      quantity: 1
+    })
+
+    toast.success("El producto ha sido agregado");
+  }
 
   return (
     <>
@@ -24,7 +45,7 @@ const ProductDetail = ({ params }: { params: {slug: string} }) => {
               <p className="my-10">{product.description}</p>
             </div>
             <div className="w-[300px]">
-              <Link href={'/'} className="bg-black text-white py-4 px-12 my-4">Agregar al carro</Link>
+              <button className="bg-black text-white py-4 px-12 my-4 text-center cursor-pointer" onClick={() => handleAddToCartClick()}>Agregar al carro</button>
             </div>
           </div>
         </div>

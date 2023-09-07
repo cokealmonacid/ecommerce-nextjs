@@ -1,5 +1,5 @@
-import ProductsWrapper from '@/components/ProductsWrapper';
-import { products } from '@/utils/data';
+import ProductsWrapper from '@/components/ProductsWrapper'
+import { products } from '@/utils/data'
 
 const Products = () => {
   return (

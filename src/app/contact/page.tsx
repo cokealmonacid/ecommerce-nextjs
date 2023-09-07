@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 const Contact = () => {
   return (
-    <div className="w-1/2 mx-auto flex py-20 gap-20 justify-center">
-      <Image src="/temporary/alonso.webp" alt="Delakalle skateshop contacto" width={400} height={400} className="flex-1"/>
+    <div className="w-3/4 lg:w-1/2 mx-auto flex py-20 gap-20 justify-center flex-col md:flex-row">
+      <Image src="/temporary/alonso.webp" alt="Delakalle skateshop contacto" width={400} height={400} className="flex-1 object-contain lg:object-fill"/>
       <div  className="flex-1">
         <h2 className="text-2xl mb-4">Contáctanos</h2>
         <form>
