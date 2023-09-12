@@ -56,4 +56,9 @@ export interface Cart {
 export interface Actions {
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
+  deleteFromCart: (item: CartItem) => void;
+}
+
+export interface CounterCartProps {
+  product: CartItem;
 }

@@ -44,8 +44,8 @@ const ProductDetail = ({ params }: { params: {slug: string} }) => {
               <Divider />
               <p className="my-10">{product.description}</p>
             </div>
-            <div className="w-[300px]">
-              <button className="bg-black text-white py-4 px-12 my-4 text-center cursor-pointer" onClick={() => handleAddToCartClick()}>Agregar al carro</button>
+            <div className="w-[300px] flex justify-center md:justify-start">
+              <button className="button" onClick={() => handleAddToCartClick()}>Agregar al carro</button>
             </div>
           </div>
         </div>

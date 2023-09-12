@@ -1,0 +1,14 @@
+.button {
+  @apply bg-stone-700;
+  @apply text-white;
+  @apply py-4;
+  @apply px-12; 
+  @apply my-4;
+  @apply text-center;
+  @apply cursor-pointer;
+  @apply transition-colors;
+  
+  &:hover {
+    @apply bg-black;
+  }
+}

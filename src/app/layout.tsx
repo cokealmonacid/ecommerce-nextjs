@@ -1,4 +1,5 @@
 import './globals.css'
+import './styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import type { Metadata } from 'next'

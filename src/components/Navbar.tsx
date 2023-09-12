@@ -36,7 +36,7 @@ const Navbar = () => {
             <Link href="/cart">
               <Image src="/cart.png" alt="Delakalle Skateshop carro de compras" width={30} height={30} />
               {
-                totalItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full px-2 py-1 text-xs flex justify-center items-center ml-5 top-5">{totalItems}</span>
+                totalItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center ml-5 top-5 py-1 px-2">{totalItems}</span>
               }
             </Link>
           </div>
