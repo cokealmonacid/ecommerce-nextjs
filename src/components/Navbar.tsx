@@ -3,11 +3,12 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { NavbarProps } from '@/utils/interfaces'
 import { useCartStore } from '@/utils/store'
 import MenuMobile from './MenuMobile'
 import Menu from './Menu'
 
-const Navbar = () => {
+const Navbar = ({ categories }: NavbarProps) => {
   const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false })
   const { totalItems} = useCartStore()
 
@@ -42,8 +43,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {menuVisibility.desktop && <Menu handleMenu={handleMenuVisibility}  />}
-      {menuVisibility.mobile && <MenuMobile handleMenu={handleMenuVisibility} />}
+      {menuVisibility.desktop && <Menu categories={categories} handleMenu={handleMenuVisibility}  />}
+      {menuVisibility.mobile && <MenuMobile categories={categories}  handleMenu={handleMenuVisibility} />}
     </>
   )
 }

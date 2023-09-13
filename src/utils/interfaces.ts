@@ -1,9 +1,10 @@
 export interface MenuProps {
+  categories: Category[];
   handleMenu: (menu: string) => void;
 }
 
 export interface Category {
-  id: number;
+  id: string;
   title: string;
   slug: string;
 }
@@ -13,7 +14,7 @@ export interface Product {
   title: string;
   description: string;
   img: string;
-  category_id: number;
+  category_id: string;
   brand: string;
   price: number;
   slug: string;
@@ -61,4 +62,17 @@ export interface Actions {
 
 export interface CounterCartProps {
   product: CartItem;
+}
+
+export interface SliderImages {
+  id: string;
+  image: string;
+}
+
+export interface SliderProps {
+  imagesSlider: SliderImages[];
+}
+
+export interface NavbarProps {
+  categories: Category[];
 }

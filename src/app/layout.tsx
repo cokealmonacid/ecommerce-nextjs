@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify'
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { Category } from '@/utils/interfaces'
+import { getData } from '@/utils/services'
 
 const courier = Courier_Prime({
   weight: ['400', '700'],
@@ -19,15 +21,17 @@ export const metadata: Metadata = {
   description: 'Delakalle Skateshop',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const categories: Category[] = await getData('categories')
+
   return (
     <html lang="es">
       <body className={courier.className}>
-        <Navbar />
+        <Navbar categories={categories}/>
         {children}
         <Footer />
         <ToastContainer position="bottom-right" theme='dark' autoClose={3000}/>

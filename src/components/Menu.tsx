@@ -1,10 +1,9 @@
 import { useRouter } from 'next/navigation'
 
 import { MenuProps } from '@/utils/interfaces'
-import { categories } from '@/utils/data'
 import { Category } from '@/utils/interfaces'
 
-const Menu = ({ handleMenu }: MenuProps) => {
+const Menu = ({ categories, handleMenu }: MenuProps) => {
   const router = useRouter()
 
   const handleClick = (menu: string, route: string) => {
