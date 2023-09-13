@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-import { imagesSlider } from '@/utils/data'
+import { SliderProps } from '@/utils/interfaces'
 
-const Slider = () => {
+const Slider = ({ imagesSlider }: SliderProps) => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Slider = () => {
     return () => {
       clearInterval(interval)
     }
-  }, [])
+  }, [imagesSlider])
 
   return (
     <div className="flex flex-col h-[300px] md:h-[600px] lg:flex-row">

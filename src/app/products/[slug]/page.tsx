@@ -33,18 +33,18 @@ const ProductDetail = ({ params }: { params: {slug: string} }) => {
 
   return (
     <>
-      <div className="w-2/3 mx-auto py-20">
+      <div className="w-11/12 mx-auto py-20">
         <div className="flex flex-wrap gap-10">
           <Image className="flex-1" src={product.img} alt={product.title} width={500} height={500} />
           <div className="flex flex-1 flex-col justify-around">
-            <div>
+            <div className="flex flex-col justify-center md:justify-start">
               <h1 className="text-stone-400 mb-4">{product.brand}</h1>
               <h2 className="uppercase text-3xl font-weight text-stone-900 mb-8">{product.title}</h2>
               <h3 className="text-stone-500 text-3xl">${product.price}</h3>
               <Divider />
               <p className="my-10">{product.description}</p>
             </div>
-            <div className="w-[300px] flex justify-center md:justify-start">
+            <div className="w-[300px] flex justify-center md:justify-start self-center md:self-start">
               <button className="button" onClick={() => handleAddToCartClick()}>Agregar al carro</button>
             </div>
           </div>

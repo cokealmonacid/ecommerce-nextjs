@@ -3,10 +3,9 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 import { MenuProps } from '@/utils/interfaces'
-import { categories } from '@/utils/data'
 import { Category } from '@/utils/interfaces'
 
-const MenuMobile = ({ handleMenu }: MenuProps) => {
+const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
   const [showCategories, setShowCategories] = useState(false)
   const router = useRouter()
 

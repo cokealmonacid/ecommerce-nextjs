@@ -16,45 +16,52 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
   }
 
   return (
-    <section className="container mx-auto py-12 flex flex-col items-center justify-center">
+    <section className="py-12 lg:w-3/4 lg:mx-auto">
       <div className="flex flex-col items-center">
         <h2 className="uppercase text-black text-2xl">Carro de compras</h2>
         <Divider />
       </div>
-      <table className="w-full md:w-3/4 my-10 border-separate border-spacing-y-10 border-b-2 border-black">
-        <thead>
-          <tr className="text-left">
-            <th className="text-2xl pl-10">Productos</th>
-            <th className="text-2xl text-center">Precio</th>
-            <th className="text-2xl text-center">Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {
+      <main className="mx-4 md:mx-8 border-b-2 border-black">
+        <div className="hidden justify-between items-center md:flex mb-5">
+          <h2 className="text-lg font-bold">Producto</h2>
+          <h2 className="text-lg font-bold">Total</h2>
+        </div>
+        <div>
+        {
             products.map((product: CartItem) => (
-              <tr key={product.id}>
-                <td className="flex items-center">
+              <div className="flex flex-col items-center justify-center mb-10 md:flex-row md:justify-between" key={product.id}>
+                <div className="flex items-center">
                   <Image src={product.img} alt={product.title} className="object-contain" width={200} height={300}/>
-                  <div>
+                  <div className="hidden md:block">
                     <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
-                    <CounterCart product={product} />
+                    <h3 className="font-semibold uppercase text-xl text-stone-500">${product.price}</h3>
+                    <div className="flex gap-5">
+                      <CounterCart product={product} />
+                      <button type="button" onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></button>
+                    </div>
                   </div>
-                </td>
-                <td className="text-center"><h2>${product.price}</h2></td>
-                <td  className="text-center"><h2>{product.quantity} x ${product.price * product.quantity}</h2></td>
-                <td onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <div className="flex flex-col w-full md:w-3/4">
-        <div className="flex gap-10 self-end">
+                </div>
+                <div className="flex flex-col items-center justify-center my-5 md:my-0 md:hidden">
+                  <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
+                  <h3>{product.quantity} x ${product.price * product.quantity}</h3>
+                  <CounterCart product={product} />
+                  <div onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer md:hidden my-4"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></div>
+                </div>
+                <h3 className="hidden md:block">{product.quantity} x ${product.price * product.quantity}</h3>
+              </div>
+            )
+          )
+        }
+        </div>
+      </main>
+      <div className="m-4 py-10 md:mx-8">
+        <div className="flex flex-1 justify-between">
           <h2 className="text-2xl text-black font-bold">TOTAL:</h2>
           <h2 className="text-2xl text-black font-bold">${totalPrice}</h2>
         </div>
-        <button className="button w-[250px] self-end">Realizar pedido</button>
+        <div className="w-full flex justify-center md:justify-end">
+          <button className="button w-full md:w-[250px]">Realizar pedido</button>
+        </div>
       </div>
     </section>
   )
