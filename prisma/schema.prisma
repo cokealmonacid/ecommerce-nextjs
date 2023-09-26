@@ -32,4 +32,6 @@ model Product {
   slug        String
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
+  active      Boolean
+  createdAt DateTime @default(now())
 }

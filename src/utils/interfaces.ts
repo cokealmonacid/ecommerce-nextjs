@@ -41,7 +41,7 @@ export interface CartItem {
   id: number;
   title: string;
   img: string;
-  category_id: number;
+  category_id: string;
   brand: string;
   price: number;
   quantity: number;
@@ -75,4 +75,12 @@ export interface SliderProps {
 
 export interface NavbarProps {
   categories: Category[];
+}
+
+export interface AddToCartButtonProps {
+  product: Product;
+}
+
+export interface HeaderProps {
+  title?: string;
 }

@@ -1,52 +1,38 @@
-'use client'
 import Image from 'next/image'
-import { toast } from 'react-toastify'
+import type { Metadata } from 'next'
 
-import { useCartStore } from '@/utils/store'
-import { products } from '@/utils/data'
 import { Product } from '@/utils/interfaces'
-import Divider from '@/components/Divider'
+import { getData } from '@/utils/services'
 import ProductsWrapper from '@/components/ProductsWrapper'
+import AddToCartButton from '@/components/AddToCartButton'
+import Divider from '@/components/Divider'
 
-/* 
-POR AGREGAR:
-- Efecto ripple en botón agregar al carro
-*/
-const ProductDetail = ({ params }: { params: {slug: string} }) => {
-  const product = products.filter((product: Product) => product.slug === params.slug )[0]
-  const relatedProducts = products.filter((item: Product) =>  item.category_id === product.category_id && item.id !== product.id)
-  const { addToCart } = useCartStore()
+export const metadata: Metadata = {
+  title: 'Productos | Delakalle Skateshop 🛹',
+  description: 'Delakalle Skateshop 🛹',
+}
 
-  const handleAddToCartClick = () => {
-    addToCart({
-      id: product.id,
-      title: product.title,
-      img: product.img,
-      category_id: product.category_id,
-      brand: product.brand,
-      price: product.price,
-      quantity: 1
-    })
-
-    toast.success("El producto ha sido agregado");
-  }
+const ProductDetail = async ({ params }: { params: {slug: string} }) => {
+  const { slug } = params
+  const products = await getData(`products/${slug}`)
+  const productSelected = products.filter((product: Product) => product.slug === params.slug )[0]
+  const relatedProducts = await getData(`categories/related?cid=${productSelected.category_id}`)
+  const filteredRelatedProducts = relatedProducts.filter((product: Product) => product.id !== productSelected.id)
 
   return (
     <>
       <div className="w-11/12 mx-auto py-20">
         <div className="flex flex-wrap gap-10">
-          <Image className="flex-1" src={product.img} alt={product.title} width={500} height={500} />
+          <Image className="flex-1" src={productSelected.img} alt={productSelected.title} width={500} height={500} />
           <div className="flex flex-1 flex-col justify-around">
             <div className="flex flex-col justify-center md:justify-start">
-              <h1 className="text-stone-400 mb-4">{product.brand}</h1>
-              <h2 className="uppercase text-3xl font-weight text-stone-900 mb-8">{product.title}</h2>
-              <h3 className="text-stone-500 text-3xl">${product.price}</h3>
+              <h1 className="text-stone-400 mb-4">{productSelected.brand}</h1>
+              <h2 className="uppercase text-3xl font-weight text-stone-900 mb-8">{productSelected.title}</h2>
+              <h3 className="text-stone-500 text-3xl">${productSelected.price}</h3>
               <Divider />
-              <p className="my-10">{product.description}</p>
+              <p className="my-10">{productSelected.description}</p>
             </div>
-            <div className="w-[300px] flex justify-center md:justify-start self-center md:self-start">
-              <button className="button" onClick={() => handleAddToCartClick()}>Agregar al carro</button>
-            </div>
+            <AddToCartButton product={productSelected} />
           </div>
         </div>
       </div>
@@ -54,7 +40,7 @@ const ProductDetail = ({ params }: { params: {slug: string} }) => {
         relatedProducts.length && (
           <ProductsWrapper
             title={"productos relacionados"}
-            products={relatedProducts}
+            products={filteredRelatedProducts}
             showed_products={4}
           />
         )

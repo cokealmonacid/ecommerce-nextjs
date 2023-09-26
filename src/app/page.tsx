@@ -1,11 +1,11 @@
 import ProductsWrapper from '@/components/ProductsWrapper'
 import Slider from '@/components/Slider'
-import { products } from '@/utils/data'
-import { SliderImages } from '@/utils/interfaces'
+import { Product, SliderImages } from '@/utils/interfaces'
 import { getData } from '@/utils/services'
 
 export default async function Home() {
   const imagesSlider: SliderImages[] = await getData('slider')
+  const products: Product[] = await getData('products/latest')
 
   return (
     <main>
