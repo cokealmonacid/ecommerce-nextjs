@@ -1,16 +1,17 @@
-import './globals.css'
-import './styles.css'
+import './../globals.css'
+import './../styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import type { Metadata } from 'next'
 import { Courier_Prime } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from '@/components/ecommerce/Navbar'
+import Footer from '@/components/ecommerce/Footer'
 import { Category } from '@/utils/interfaces'
 import { getData } from '@/utils/services'
 import AuthProvider from '@/providers/AuthProvider'
+import NavbarLogged from '@/components/dashboard/navbarLogged'
 
 const courier = Courier_Prime({
   weight: ['400', '700'],
@@ -33,6 +34,7 @@ export default async function RootLayout({
     <html lang="es">
       <body className={courier.className}>
         <AuthProvider>
+          <NavbarLogged />
           <Navbar categories={categories}/>
           {children}
           <Footer />

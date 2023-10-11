@@ -10,7 +10,7 @@ import Menu from './Menu'
 
 const Navbar = ({ categories }: NavbarProps) => {
   const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false })
-  const { totalItems} = useCartStore()
+  const { totalItems } = useCartStore()
 
   const handleMenuVisibility = (opt: string) => {
     setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] })

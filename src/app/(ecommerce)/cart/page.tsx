@@ -1,7 +1,7 @@
 'use client'
 
-import CartEmpty from '@/components/CartEmpty'
-import CartWrapper from '@/components/CartWrapper'
+import CartEmpty from '@/components/ecommerce/CartEmpty'
+import CartWrapper from '@/components/ecommerce/CartWrapper'
 import { useCartStore } from '@/utils/store'
 
 const Cart = () => {

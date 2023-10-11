@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import { Category, Product } from '@/utils/interfaces'
-import ProductsWrapper from '@/components/ProductsWrapper'
+import ProductsWrapper from '@/components/ecommerce/ProductsWrapper'
 import { getData } from '@/utils/services'
 
 export const metadata: Metadata = {

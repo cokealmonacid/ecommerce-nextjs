@@ -18,6 +18,7 @@ export interface Product {
   brand: string;
   price: number;
   slug: string;
+  active: boolean;
 }
 
 export interface ButtonProps {
@@ -83,4 +84,17 @@ export interface AddToCartButtonProps {
 
 export interface HeaderProps {
   title?: string;
+}
+
+export interface ProductWithCategory extends Product {
+  category?: string;
+}
+
+export interface CategoryWithProducts extends Category {
+  totalProducts?: number;
+}
+
+export interface RoutesProps {
+  title: string;
+  url: string;
 }

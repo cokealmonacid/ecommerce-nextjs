@@ -1,5 +1,5 @@
-import ProductsWrapper from '@/components/ProductsWrapper'
-import Slider from '@/components/Slider'
+import ProductsWrapper from '@/components/ecommerce/ProductsWrapper'
+import Slider from '@/components/ecommerce/Slider'
 import { Product, SliderImages } from '@/utils/interfaces'
 import { getData } from '@/utils/services'
 
