@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import ProductsWrapper from '@/components/ProductsWrapper'
+import ProductsWrapper from '@/components/ecommerce/ProductsWrapper'
 import { Product } from '@/utils/interfaces'
 import { getData } from '@/utils/services'
 

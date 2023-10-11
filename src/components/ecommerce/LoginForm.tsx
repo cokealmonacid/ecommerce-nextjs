@@ -11,6 +11,8 @@ const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
 
+  if (status === 'authenticated') router.push('/dashboard')
+
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
@@ -23,7 +25,6 @@ const LoginForm = () => {
     setLoading(true)
     const res = await signIn('credentials', { email: inputs.email, password: inputs.password, redirect: false })
     setLoading(false)
-    console.log(res)
   }
 
   return (

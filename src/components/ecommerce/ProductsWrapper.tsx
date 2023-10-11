@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Product, ProductsWrapperProps } from '@/utils/interfaces'
+import { priceFormatter } from '@/utils/helpers'
 import Divider from './Divider'
 
 
@@ -20,7 +21,7 @@ const ProductsWrapper = ({ title, products, showed_products, button }: ProductsW
             <Link href={`/products/${product.slug}`} key={product.id} className="cursor-pointer w-[300px] h-[500px] flex flex-col justify-center items-center overflow-hidden relative">
               <Image src={product.img} alt={product.title} className="object-contain" width={400} height={500}/>
               <h2 className="text-stone-800 mt-6">{product.title}</h2>
-              <p className="text-stone-400">${`${product.price}`}</p>
+              <p className="text-stone-400">{priceFormatter(product.price)}</p>
             </Link>
           ))
         }

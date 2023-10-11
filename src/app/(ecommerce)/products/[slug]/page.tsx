@@ -3,9 +3,10 @@ import type { Metadata } from 'next'
 
 import { Product } from '@/utils/interfaces'
 import { getData } from '@/utils/services'
-import ProductsWrapper from '@/components/ProductsWrapper'
-import AddToCartButton from '@/components/AddToCartButton'
-import Divider from '@/components/Divider'
+import { priceFormatter } from '@/utils/helpers'
+import ProductsWrapper from '@/components/ecommerce/ProductsWrapper'
+import AddToCartButton from '@/components/ecommerce/AddToCartButton'
+import Divider from '@/components/ecommerce/Divider'
 
 export const metadata: Metadata = {
   title: 'Productos | Delakalle Skateshop 🛹',
@@ -28,7 +29,7 @@ const ProductDetail = async ({ params }: { params: {slug: string} }) => {
             <div className="flex flex-col justify-center md:justify-start">
               <h1 className="text-stone-400 mb-4">{productSelected.brand}</h1>
               <h2 className="uppercase text-3xl font-weight text-stone-900 mb-8">{productSelected.title}</h2>
-              <h3 className="text-stone-500 text-3xl">${productSelected.price}</h3>
+              <h3 className="text-stone-500 text-3xl">{priceFormatter(productSelected.price)}</h3>
               <Divider />
               <p className="my-10">{productSelected.description}</p>
             </div>

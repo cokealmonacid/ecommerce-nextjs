@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { toast } from 'react-toastify'
 
 import { CartItem, CartWrapperProps } from '@/utils/interfaces'
+import { priceFormatter } from '@/utils/helpers'
 import { useCartStore } from '@/utils/store'
 import CounterCart from './CounterCart'
 import Divider from './Divider'
@@ -34,7 +35,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
                   <Image src={product.img} alt={product.title} className="object-contain" width={200} height={300}/>
                   <div className="hidden md:block">
                     <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
-                    <h3 className="font-semibold uppercase text-xl text-stone-500">${product.price}</h3>
+                    <h3 className="font-semibold uppercase text-xl text-stone-500">{priceFormatter(product.price)}</h3>
                     <div className="flex gap-5">
                       <CounterCart product={product} />
                       <button type="button" onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></button>
@@ -47,7 +48,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
                   <CounterCart product={product} />
                   <div onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer md:hidden my-4"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></div>
                 </div>
-                <h3 className="hidden md:block">{product.quantity} x ${product.price * product.quantity}</h3>
+                <h3 className="hidden md:block">{product.quantity} x {priceFormatter(product.price * product.quantity)}</h3>
               </div>
             )
           )
@@ -57,7 +58,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
       <div className="m-4 py-10 md:mx-8">
         <div className="flex flex-1 justify-between">
           <h2 className="text-2xl text-black font-bold">TOTAL:</h2>
-          <h2 className="text-2xl text-black font-bold">${totalPrice}</h2>
+          <h2 className="text-2xl text-black font-bold">{priceFormatter(totalPrice)}</h2>
         </div>
         <div className="w-full flex justify-center md:justify-end">
           <button className="button w-full md:w-[250px]">Realizar pedido</button>
