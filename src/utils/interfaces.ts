@@ -98,3 +98,7 @@ export interface RoutesProps {
   title: string;
   url: string;
 }
+
+export interface  ChildrenProps {
+  children: React.ReactNode;
+}
