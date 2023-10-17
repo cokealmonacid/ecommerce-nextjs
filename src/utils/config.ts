@@ -1,7 +1,7 @@
 export const dashboardRouter = [
   {
     title: 'Productos',
-    url: '/dashboard',
+    url: '/dashboard/products',
   },
   {
     title: 'Categorías',

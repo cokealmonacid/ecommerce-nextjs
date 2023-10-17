@@ -1,6 +1,6 @@
 import { CategoryWithProducts, Product } from "@/utils/interfaces"
 import { prisma } from "@/utils/connect"
-import Actions from "@/components/dashboard/actions"
+import Actions from "@/components/dashboard/Actions"
 
 const Categories = async () => {
   const categories = await prisma.category.findMany() as unknown as CategoryWithProducts[]
