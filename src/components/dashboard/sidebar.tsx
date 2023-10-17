@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div className="w-1/6 bg-[#0b0e18] shadow-lg">
       <header className="flex justify-center items-center py-6 bg-[#223463]">
-        <Link href="/"><Image src="/logo.png" alt="Delakalle Skateshop" width={80} height={80} /></Link>
+        <Link href="/"><Image src="/logo.png" alt="Delakalle Skateshop" width={80} height={80} priority /></Link>
       </header>
       <main className="py-6">
         {

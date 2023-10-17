@@ -17,7 +17,10 @@ const Dashboard = async () => {
 
   return (
     <div className="p-4 h-[800px] overflow-scroll">
-      <h1 className="text-2xl text-stone-600 font-semibold">Productos</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl text-stone-600 font-semibold">Productos</h1>
+        <button className="text-sm py-2 px-4 bg-red-500 text-white font-semibold rounded-md">Agregar</button>
+      </div>
       <div className="h-[2px] w-full bg-stone-100 my-4"></div>
       <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left text-gray-500">
