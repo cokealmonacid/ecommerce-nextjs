@@ -13,13 +13,13 @@ export const authOptions: NextAuthOptions = {
       credentials: {},
       async authorize(credentials) {
         const { email,  password } = credentials as { email: string; password: string; }
-        if (!email || !password) throw new Error("Invalid Credentials!");
+        if (!email || !password) throw Error("EMPTY_CREDENTIALS");
 
         const user = await prisma.user.findUnique({ where: { email } })
-        if (!user) throw new Error("Wrong Credentials!");
+        if (!user) throw Error("WRONG_CREDENTIALS");
 
         const passwordMatch = await compare(password, user.password)
-        if (!passwordMatch) throw new Error("User not found!");
+        if (!passwordMatch) throw Error("INVALID_CREDENTIALS");
 
         return user
       },

@@ -4,16 +4,22 @@ import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import LoadingDots from './LoadingDots';
+import ErrorAlert from '../shared/ErrorAlert';
 
 const LoginForm = () => {
   const router = useRouter()
-  const { data, status } = useSession()
+  const { status } = useSession()
   const [inputs, setInputs] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   if (status === 'authenticated') router.push('/dashboard')
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (error) {
+      setError('')
+    }
+  
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
@@ -24,11 +30,16 @@ const LoginForm = () => {
     e.preventDefault()
     setLoading(true)
     const res = await signIn('credentials', { email: inputs.email, password: inputs.password, redirect: false })
+    if (res && res.error) {
+      setError(res.error)
+    }
+
     setLoading(false)
   }
 
   return (
     <form className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16" onSubmit={handleSubmit}>
+      { error && (<ErrorAlert message={error} />)}
       <div>
         <label htmlFor="email" className="block text-xs text-gray-600 uppercase">Email</label>
         <input
