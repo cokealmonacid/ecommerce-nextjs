@@ -99,6 +99,10 @@ export interface RoutesProps {
   url: string;
 }
 
-export interface  ChildrenProps {
+export interface ChildrenProps {
   children: React.ReactNode;
+}
+
+export interface ErrorAlertProps {
+  message: string;
 }
