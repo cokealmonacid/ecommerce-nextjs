@@ -25,7 +25,8 @@ const Add = () => {
   }
 
   return (
-    <div className="p-4 h-[800px] overflow-scroll flex justify-center items-center">
+    <div className="p-4 h-[800px] overflow-scroll flex flex-col justify-center items-center">
+      <h2 className="font-semibold text-stale-600 text-xl">Agregar una imagen</h2>
       <form className="p-4" onSubmit={handleSubmit}>
           {
             file ?

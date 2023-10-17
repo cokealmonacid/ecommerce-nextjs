@@ -1,5 +1,5 @@
-import './../globals.css'
-import './../styles.css'
+import './../styles/globals.css'
+import './../styles/main.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import type { Metadata } from 'next'
@@ -7,8 +7,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import AuthProvider from '@/providers/AuthProvider'
-import Sidebar from '@/components/dashboard/sidebar'
-import Logout from '@/components/dashboard/logout'
+import Sidebar from '@/components/dashboard/Sidebar'
+import Logout from '@/components/dashboard/Logout'
+import Back from '@/components/dashboard/Back'
 
 export const metadata: Metadata = {
   title: 'Panel de Administración | Delakalle Skateshop 🛹',
@@ -34,6 +35,7 @@ export default async function RootLayout({
               <Logout />
             </div>
             <section className="my-2 py-6 bg-white shadow-lg rounded-md">
+            <Back />
             { children }
             </section>
           </div>

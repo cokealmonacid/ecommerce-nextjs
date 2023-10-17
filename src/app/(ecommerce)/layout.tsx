@@ -1,5 +1,5 @@
-import './../globals.css'
-import './../styles.css'
+import './../styles/globals.css'
+import './../styles/main.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import type { Metadata } from 'next'
@@ -11,7 +11,7 @@ import Footer from '@/components/ecommerce/Footer'
 import { Category } from '@/utils/interfaces'
 import { getData } from '@/utils/services'
 import AuthProvider from '@/providers/AuthProvider'
-import NavbarLogged from '@/components/dashboard/navbarLogged'
+import NavbarLogged from '@/components/dashboard/NavbarLogged'
 
 const courier = Courier_Prime({
   weight: ['400', '700'],

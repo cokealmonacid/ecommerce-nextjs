@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { SliderImages } from "@/utils/interfaces"
 import { prisma } from "@/utils/connect"
-import Actions from "@/components/dashboard/actions"
+import Actions from "@/components/dashboard/Actions"
 
 const Slider = async () => {
   const imageSliders = await prisma.imageSlider.findMany()
@@ -32,7 +32,7 @@ const Slider = async () => {
                         <td className="px-6 py-4">
                           <Image src={slider.image} alt={slider.image} height={500} width={500} />
                         </td>
-                        <td className="px-6 py-4 flex flex-col justify-center items-center"><Actions view/></td>
+                        <td className="px-6 py-4 flex flex-col justify-center items-center"><Actions remove/></td>
                       </tr>
                     ))
                   }

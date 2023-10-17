@@ -13,7 +13,15 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  if (status === 'authenticated') router.push('/dashboard')
+  if (status === 'loading') {
+    return (
+      <div className="w-full flex justify-center items-center p-4">
+        <LoadingDots />
+      </div>
+    )
+  }
+
+  if (status === 'authenticated') router.push('/dashboard/products')
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (error) {

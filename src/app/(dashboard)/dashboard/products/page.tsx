@@ -1,8 +1,8 @@
 import { priceFormatter } from "@/utils/helpers"
 import { Category, ProductWithCategory } from "@/utils/interfaces"
 import { prisma } from "@/utils/connect"
-import ToggleStatus from "@/components/dashboard/toggleStatus"
-import Actions from "@/components/dashboard/actions"
+import ToggleStatus from "@/components/dashboard/ToggleStatus"
+import Actions from "@/components/dashboard/Actions"
 
 const Dashboard = async () => {
   const products = await prisma.product.findMany() as unknown as ProductWithCategory[]

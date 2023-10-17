@@ -19,7 +19,7 @@ const Sidebar = () => {
           dashboardRouter.map((route: RoutesProps) => (
             <Link href={route.url} key={route.title}>
               <div className="py-4 px-8">
-                <h1 className={`text-xl text-white ${route.url === pathname ? 'font-bold' : 'font-thin'}`}>{route.title}</h1>
+                <h1 className={`text-xl text-white ${pathname.includes(route.url) ? 'font-bold' : 'font-thin'}`}>{route.title}</h1>
               </div>
             </Link>
           ))
