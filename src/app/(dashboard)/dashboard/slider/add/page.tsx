@@ -1,10 +1,19 @@
 'use client'
-import { useState } from "react"
 import Image from "next/image"
+import { useState } from "react"
+import { toast } from 'react-toastify'
+import { useMutation } from "@tanstack/react-query"
+
+import ErrorAlert from "@/components/shared/ErrorAlert"
+import LoadingDots from "@/components/ecommerce/LoadingDots"
 import { postFormData } from "@/utils/services"
+import { responses } from "@/utils/language"
 
 const Add = () => {
   const [file, setFile] = useState<File | undefined>();
+  const mutation = useMutation({
+    mutationFn: (data: FormData) => postFormData("slider", data)
+  })
 
   const handleRemoveImage = () => setFile(undefined)
 
@@ -19,14 +28,18 @@ const Add = () => {
     
     const data = new FormData()
     data.set('file', file)
+    mutation.mutate(data)
+  }
 
-    const res = await postFormData("slider", data);
-    console.log('res 🤔: ', await res.json())
+  if (mutation.isSuccess) {
+    toast.success(responses[mutation.data.message])
+    mutation.reset()
   }
 
   return (
     <div className="p-4 h-[800px] overflow-scroll flex flex-col justify-center items-center">
-      <h2 className="font-semibold text-stale-600 text-xl">Agregar una imagen</h2>
+      <h2 className="font-semibold text-stale-600 text-xl text-slate-700">Agregar una imagen</h2>
+      { mutation.error && (<ErrorAlert message={mutation.error.message} />)}
       <form className="p-4" onSubmit={handleSubmit}>
           {
             file ?
@@ -53,7 +66,11 @@ const Add = () => {
               </label>
             )
           }
-          <button className="bg-green-500 w-full rounded py-2 text-white font-semibold" disabled={!file}>Subir imagen</button>
+          <button className="bg-green-500 w-full rounded py-2 text-white font-semibold disabled:opacity-60 disabled:pb-3" disabled={!file || mutation.isPending}>
+            {
+              mutation.isPending ? <LoadingDots color='#FFFFFF' /> : 'Subir imagen'
+            }
+          </button>
         </form>
     </div>
   )

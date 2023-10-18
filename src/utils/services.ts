@@ -3,10 +3,6 @@ export const getData = async (url: string) => {
     cache: 'no-cache'
   })
 
-  if (!res.ok) {
-    throw new Error("Failed!")
-  }
-
   return await res.json()
 }
 
@@ -17,8 +13,9 @@ export const postFormData = async (url: string, data: FormData) => {
   })
 
   if (!res.ok) {
-    throw new Error("Failed!")
+    const { message } = await res.json()
+    throw new Error(message)
   }
 
-  return res
+  return res.json()
 }
