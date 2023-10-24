@@ -15,10 +15,10 @@ export const GET = async () => {
 
 // CREATE SLIDER IMAGE
 export const POST = async (req: NextRequest) => {
-  const session = await getAuthSession()
+  const session = await getAuthSession();
 
   if (session) {
-    const data = await req.formData()
+    const data = await req.formData();
     const file: File | null = data.get("file") as unknown as File;
   
     if (!file) {
@@ -27,22 +27,23 @@ export const POST = async (req: NextRequest) => {
 
     try {
       data.append("upload_preset", process.env.CLOUDINARY_PRESET ?? '');
+      data.append("folder", process.env.CLOUDINARY_FOLDER ?? '');
       const uploadResponse = await fetch(
-        "https://api.cloudinary.com/v1_1/dzmyrcc99/image/upload",
+        `${process.env.CLOUDINARY_URL}/upload`,
         {
           method: "POST",
           body: data,
         }
       );
     
-      const uploadedImageData = await uploadResponse.json();
+      const uploadedImageData = await uploadResponse.json()
       await prisma.imageSlider.create({
         data: {
           image: uploadedImageData.url
         }
-      })
+      });
     
-      return new NextResponse(JSON.stringify({ message: 'CREATED_SUCCESS_IMAGE' }), { status: 201 })
+      return new NextResponse(JSON.stringify({ message: 'CREATED_SUCCESS_IMAGE' }), { status: 201 });
     } catch (err) {
       return new NextResponse(JSON.stringify({ message: 'SOMETHING_WENT_WRONG' }), { status: 500 });
     }
