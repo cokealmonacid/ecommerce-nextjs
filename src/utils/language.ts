@@ -6,5 +6,6 @@ export const responses: {[key: string]: string} = {
   'SOMETHING_WENT_WRONG': 'Ha ocurrido un error, inténtalo más tarde.',
   'NOT_AUTHENTICATED': 'Debes estar autenticado para realizar esta operación.',
   'CREATED_SUCCESS_IMAGE': 'La imagen ha sido agregada!',
-  'DELETED_RESOURCE': 'Se ha eliminado el elemento exitosamente!'
+  'DELETED_RESOURCE': 'Se ha eliminado el elemento exitosamente!',
+  'CREATED_SUCCESS_CATEGORY': 'La categoría ha sido agregada!'
 }

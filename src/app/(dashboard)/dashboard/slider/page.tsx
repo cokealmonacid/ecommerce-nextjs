@@ -32,7 +32,7 @@ const Slider = async () => {
                         <td className="px-6 py-4">
                           <Image src={slider.image} alt={slider.image} height={500} width={500} />
                         </td>
-                        <td className="px-6 py-4 flex flex-col justify-center items-center"><Actions remove/></td>
+                        <td className="px-6 py-4 flex flex-col justify-center items-center"><Actions id={slider.id} url="slider" remove/></td>
                       </tr>
                     ))
                   }
