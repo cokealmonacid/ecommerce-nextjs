@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from 'react-toastify'
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import ErrorAlert from "@/components/shared/ErrorAlert"
 import LoadingDots from "@/components/ecommerce/LoadingDots"
@@ -11,8 +11,13 @@ import { responses } from "@/utils/language"
 
 const Add = () => {
   const [file, setFile] = useState<File | undefined>();
+  const queryClient = useQueryClient();
+  
   const mutation = useMutation({
-    mutationFn: (data: FormData) => postFormData("slider", data)
+    mutationFn: (data: FormData) => postFormData("slider", data),
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['GET_SLIDERS'] })
+    }
   })
 
   const handleRemoveImage = () => setFile(undefined)

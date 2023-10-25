@@ -1,12 +1,23 @@
+'use client'
 import Image from "next/image"
 import Link from "next/link"
+import { useQuery } from "@tanstack/react-query"
 
 import { SliderImages } from "@/utils/interfaces"
-import { prisma } from "@/utils/connect"
 import Actions from "@/components/dashboard/Actions"
+import { getData } from "@/utils/services"
 
-const Slider = async () => {
-  const imageSliders = await prisma.imageSlider.findMany()
+const Slider = () => {
+  const { isLoading, data: imagesSliders} = useQuery({
+    queryKey: ['GET_SLIDERS'],
+    queryFn: () => {
+      return getData('slider');
+    }
+  });
+
+  if (isLoading) {
+    return 'LOADING...'
+  }
 
   return (
     <div className="p-4 h-[800px] overflow-scroll">
@@ -27,7 +38,7 @@ const Slider = async () => {
               </thead>
               <tbody>
                   {
-                    imageSliders.map((slider: SliderImages) => (
+                    imagesSliders.map((slider: SliderImages) => (
                       <tr className="bg-white border-b hover:bg-gray-100 cursor-pointer" key={slider.id}>
                         <td className="px-6 py-4">
                           <Image src={slider.image} alt={slider.image} height={500} width={500} />
