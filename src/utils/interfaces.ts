@@ -87,11 +87,13 @@ export interface HeaderProps {
 }
 
 export interface ProductWithCategory extends Product {
-  category?: string;
+  category: Category;
 }
 
 export interface CategoryWithProducts extends Category {
-  totalProducts?: number;
+  _count: {
+    products: number
+  };
 }
 
 export interface RoutesProps {

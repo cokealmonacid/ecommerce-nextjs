@@ -6,15 +6,17 @@ import { useQuery } from "@tanstack/react-query"
 import { SliderImages } from "@/utils/interfaces"
 import Actions from "@/components/dashboard/Actions"
 import { getData } from "@/utils/services"
+import { queryKeys } from "@/utils/consts"
 
 const Slider = () => {
   const { isLoading, data: imagesSliders} = useQuery({
-    queryKey: ['GET_SLIDERS'],
+    queryKey: [queryKeys.GET_SLIDERS],
     queryFn: () => {
       return getData('slider');
     }
   });
 
+  // POR HACER: Mejorar loading
   if (isLoading) {
     return 'LOADING...'
   }
