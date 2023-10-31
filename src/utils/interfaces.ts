@@ -54,7 +54,6 @@ export interface Cart {
   totalPrice: number;
 };
 
-
 export interface Actions {
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
@@ -107,4 +106,10 @@ export interface ChildrenProps {
 
 export interface ErrorAlertProps {
   message: string;
+}
+
+export interface WrapperProps {
+  children: React.ReactNode;
+  title: string;
+  url: string;
 }
