@@ -2,18 +2,24 @@
 
 import { useState } from "react"
 import { toast } from 'react-toastify'
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import ErrorAlert from "@/components/shared/ErrorAlert"
 import LoadingDots from "@/components/ecommerce/LoadingDots"
 import { postData } from "@/utils/services"
 import { responses } from "@/utils/language"
 import { slugify } from "@/utils/helpers"
+import { queryKeys } from "@/utils/consts"
 
 const Add = () => {
   const [categoryName, setCategoryName] = useState<string | null>();
+  const queryClient = useQueryClient();
+  
   const mutation = useMutation({
-    mutationFn: (data: {[key: string] : string}) => postData("categories", data)
+    mutationFn: (data: {[key: string] : string}) => postData("categories", data),
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: [queryKeys.GET_CATEGORIES] })
+    }
   })
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {  

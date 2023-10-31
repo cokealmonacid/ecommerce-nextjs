@@ -1,24 +1,24 @@
-import { CategoryWithProducts, Product } from "@/utils/interfaces"
-import { prisma } from "@/utils/connect"
-import Actions from "@/components/dashboard/Actions"
+'use client'
 import Link from "next/link"
 
-const Categories = async () => {
-  const categories = await prisma.category.findMany() as unknown as CategoryWithProducts[]
-  const products = await prisma.product.findMany() as unknown as Product[]
+import { CategoryWithProducts, Product } from "@/utils/interfaces"
+import Actions from "@/components/dashboard/Actions"
+import { getData } from "@/utils/services"
+import { useQuery } from "@tanstack/react-query"
+import { queryKeys } from "@/utils/consts"
 
-  const categoriesWithProducts = categories.map((category: CategoryWithProducts) => {
-    let counter = 0
-    products.map((product: Product) => {
-      if (product.category_id === category.id) {
-        counter++
-      }
-    })
+const Categories = () => {
+  const { isLoading, data: categories} = useQuery({
+    queryKey: [queryKeys.GET_CATEGORIES],
+    queryFn: () => {
+      return getData('categories');
+    }
+  });
 
-    category.totalProducts = counter
-
-    return category
-  })
+  // POR HACER: Mejorar loading
+  if (isLoading) {
+    return 'LOADING...'
+  }
 
   return (
     <div className="p-4 h-[800px] overflow-scroll">
@@ -40,10 +40,10 @@ const Categories = async () => {
               </thead>
               <tbody>
                   {
-                    categoriesWithProducts.map((category: CategoryWithProducts) => (
+                    categories.map((category: CategoryWithProducts) => (
                       <tr className="bg-white border-b hover:bg-gray-100 cursor-pointer" key={category.id}>
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.title}</th>
-                        <td className="px-6 py-4">{category.totalProducts}</td>
+                        <td className="px-6 py-4">{category._count.products}</td>
                         <td className="px-6 py-4">
                           <Actions
                             remove

@@ -8,6 +8,7 @@ import ErrorAlert from "@/components/shared/ErrorAlert"
 import LoadingDots from "@/components/ecommerce/LoadingDots"
 import { postFormData } from "@/utils/services"
 import { responses } from "@/utils/language"
+import { queryKeys } from "@/utils/consts"
 
 const Add = () => {
   const [file, setFile] = useState<File | undefined>();
@@ -16,7 +17,7 @@ const Add = () => {
   const mutation = useMutation({
     mutationFn: (data: FormData) => postFormData("slider", data),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['GET_SLIDERS'] })
+      queryClient.invalidateQueries({ queryKey: [queryKeys.GET_SLIDERS] })
     }
   })
 
