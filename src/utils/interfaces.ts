@@ -113,3 +113,9 @@ export interface WrapperProps {
   title: string;
   url: string;
 }
+
+export interface ImageInputProps {
+  file: File | undefined;
+  handleRemoveImage: () => void;
+  handleUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
