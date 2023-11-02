@@ -1,49 +1,50 @@
-'use client'
-import { useState } from 'react'
-import { signIn, useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+"use client";
 
-import LoadingDots from './LoadingDots';
-import ErrorAlert from '../shared/ErrorAlert';
+import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+import LoadingDots from "./LoadingDots";
+import ErrorAlert from "../shared/ErrorAlert";
 
 const LoginForm = () => {
-  const router = useRouter()
-  const { status } = useSession()
-  const [inputs, setInputs] = useState({ email: '', password: '' })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const router = useRouter();
+  const { status } = useSession();
+  const [inputs, setInputs] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return (
       <div className="w-full flex justify-center items-center p-4">
         <LoadingDots />
       </div>
-    )
+    );
   }
 
-  if (status === 'authenticated') router.push('/dashboard/products')
+  if (status === "authenticated") router.push("/dashboard/products");
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (error) {
-      setError('')
+      setError("");
     }
   
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    const res = await signIn('credentials', { email: inputs.email, password: inputs.password, redirect: false })
+    e.preventDefault();
+    setLoading(true);
+    const res = await signIn("credentials", { email: inputs.email, password: inputs.password, redirect: false });
     if (res && res.error) {
-      setError(res.error)
+      setError(res.error);
     }
 
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   return (
     <form className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16" onSubmit={handleSubmit}>
@@ -66,7 +67,7 @@ const LoginForm = () => {
           name="password"
           type="password"
           onChange={handleInputs}
-          autoComplete=''
+          autoComplete=""
           className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
           required
         />
@@ -87,7 +88,7 @@ const LoginForm = () => {
         )}
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

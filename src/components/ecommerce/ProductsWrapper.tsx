@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
-import { Product, ProductsWrapperProps } from '@/utils/interfaces'
-import { priceFormatter } from '@/utils/helpers'
-import Divider from './Divider'
+import { Product, ProductsWrapperProps } from "@/utils/interfaces";
+import { priceFormatter } from "@/utils/helpers";
+import Divider from "./Divider";
 
 
 const ProductsWrapper = ({ title, products, showed_products, button }: ProductsWrapperProps) => {
-  const formatted_products = showed_products ? products.slice(products.length - showed_products, products.length) : products
+  const formatted_products = showed_products ? products.slice(products.length - showed_products, products.length) : products;
 
   return (
     <section className="container mx-auto py-12 flex flex-col items-center justify-center">
@@ -28,7 +28,7 @@ const ProductsWrapper = ({ title, products, showed_products, button }: ProductsW
       </div>
       { button && <Link href={button.url} className="button">{button.title}</Link>}
     </section>
-  )
-}
+  );
+};
 
-export default ProductsWrapper
+export default ProductsWrapper;

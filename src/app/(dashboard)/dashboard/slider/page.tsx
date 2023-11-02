@@ -1,24 +1,24 @@
-'use client'
-import Image from "next/image"
-import { useQuery } from "@tanstack/react-query"
+"use client";
+import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
-import { SliderImages } from "@/utils/interfaces"
-import Actions from "@/components/dashboard/Actions"
-import { getData } from "@/utils/services"
-import { queryKeys } from "@/utils/consts"
-import Wrapper from "@/components/dashboard/Wrapper"
+import { SliderImages } from "@/utils/interfaces";
+import Actions from "@/components/dashboard/Actions";
+import { getData } from "@/utils/services";
+import { queryKeys } from "@/utils/consts";
+import Wrapper from "@/components/dashboard/Wrapper";
 
 const Slider = () => {
   const { isLoading, data } = useQuery({
     queryKey: [queryKeys.GET_SLIDERS],
     queryFn: () => {
-      return getData('slider');
+      return getData("slider");
     }
   });
 
   // POR HACER: Mejorar loading
   if (isLoading) {
-    return 'LOADING...'
+    return "LOADING...";
   }
 
   return (
@@ -41,7 +41,7 @@ const Slider = () => {
         </tbody>
       </table>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Slider
+export default Slider;

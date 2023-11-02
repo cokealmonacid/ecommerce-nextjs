@@ -1,34 +1,34 @@
-import './../styles/globals.css'
-import './../styles/main.css'
-import 'react-toastify/dist/ReactToastify.css'
+import "./../styles/globals.css";
+import "./../styles/main.css";
+import "react-toastify/dist/ReactToastify.css";
 
-import type { Metadata } from 'next'
-import { Courier_Prime } from 'next/font/google'
-import { ToastContainer } from 'react-toastify'
+import type { Metadata } from "next";
+import { Courier_Prime } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
-import Navbar from '@/components/ecommerce/Navbar'
-import Footer from '@/components/ecommerce/Footer'
-import { Category } from '@/utils/interfaces'
-import { getData } from '@/utils/services'
-import AuthProvider from '@/providers/AuthProvider'
-import NavbarLogged from '@/components/dashboard/NavbarLogged'
+import Navbar from "@/components/ecommerce/Navbar";
+import Footer from "@/components/ecommerce/Footer";
+import { Category } from "@/utils/interfaces";
+import { getData } from "@/utils/services";
+import AuthProvider from "@/providers/AuthProvider";
+import NavbarLogged from "@/components/dashboard/NavbarLogged";
 
 const courier = Courier_Prime({
-  weight: ['400', '700'],
-  subsets: ['latin']
-})
+  weight: ["400", "700"],
+  subsets: ["latin"]
+});
 
 export const metadata: Metadata = {
-  title: 'Delakalle Skateshop 🛹',
-  description: 'Delakalle Skateshop 🛹',
-}
+  title: "Delakalle Skateshop 🛹",
+  description: "Delakalle Skateshop 🛹",
+};
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const categories: Category[] = await getData('categories')
+  const categories: Category[] = await getData("categories");
 
   return (
     <html lang="es">
@@ -42,5 +42,5 @@ export default async function RootLayout({
         </AuthProvider>
       </body>
     </html>
-  )
+  );
 }

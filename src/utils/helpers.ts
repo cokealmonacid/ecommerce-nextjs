@@ -2,7 +2,6 @@ import crypto from "crypto";
 
 import { User } from "@prisma/client";
 
-
 const formatter = new Intl.NumberFormat("es-CL", {
   style: "currency",
   currency: "CLP",

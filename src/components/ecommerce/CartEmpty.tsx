@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-import Divider from "./Divider"
+import Divider from "./Divider";
 
 const CartEmpty = () => {
   return (
@@ -15,7 +15,7 @@ const CartEmpty = () => {
         <Link href="/products" className="button">Ver productos</Link>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CartEmpty
+export default CartEmpty;

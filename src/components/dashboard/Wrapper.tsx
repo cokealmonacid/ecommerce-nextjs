@@ -16,7 +16,7 @@ const Wrapper = ({ children, title, url }: WrapperProps) => {
         { children }
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Wrapper;

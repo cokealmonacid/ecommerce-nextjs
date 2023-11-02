@@ -1,6 +1,6 @@
-import Image from "next/image"
+import Image from "next/image";
 
-import { ImageInputProps } from "@/utils/interfaces"
+import { ImageInputProps } from "@/utils/interfaces";
 
 const ImageInput = ({ file, handleRemoveImage, handleUploadedImage }: ImageInputProps) => {
 
@@ -10,7 +10,7 @@ const ImageInput = ({ file, handleRemoveImage, handleUploadedImage }: ImageInput
         <Image src={URL.createObjectURL(file)} alt="imagen subida" width={500} height={500} className="object-contain" />
         <button className="rounded-full bg-red-500 text-white font-bold px-3 py-1 absolute top-1 right-1" onClick={handleRemoveImage}>X</button>
       </div>
-    )
+    );
   }
 
   return (
@@ -27,7 +27,7 @@ const ImageInput = ({ file, handleRemoveImage, handleUploadedImage }: ImageInput
     </div>
     <input type="file" className="opacity-0" accept="image/*" name="img" onChange={handleUploadedImage}/>
     </label>
-  )
-}
+  );
+};
 
 export default ImageInput;

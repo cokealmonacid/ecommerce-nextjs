@@ -1,25 +1,25 @@
-'use client'
-import { useQuery } from "@tanstack/react-query"
+"use client";
+import { useQuery } from "@tanstack/react-query";
 
-import { priceFormatter } from "@/utils/helpers"
-import { ProductWithCategory } from "@/utils/interfaces"
-import ToggleStatus from "@/components/dashboard/ToggleStatus"
-import Actions from "@/components/dashboard/Actions"
-import { queryKeys } from "@/utils/consts"
-import { getData } from "@/utils/services"
-import Wrapper from "@/components/dashboard/Wrapper"
+import { priceFormatter } from "@/utils/helpers";
+import { ProductWithCategory } from "@/utils/interfaces";
+import ToggleStatus from "@/components/dashboard/ToggleStatus";
+import Actions from "@/components/dashboard/Actions";
+import { queryKeys } from "@/utils/consts";
+import { getData } from "@/utils/services";
+import Wrapper from "@/components/dashboard/Wrapper";
 
 const Dashboard = () => {
   const { isLoading, data} = useQuery({
     queryKey: [queryKeys.GET_PRODUCTS],
     queryFn: () => {
-      return getData('products');
+      return getData("products");
     }
   });
 
   // POR HACER: Mejorar loading
   if (isLoading) {
-    return 'LOADING...'
+    return "LOADING...";
   }
 
   return (
@@ -55,7 +55,7 @@ const Dashboard = () => {
         </tbody>
       </table>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
