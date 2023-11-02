@@ -1,14 +1,15 @@
 export const dashboardRouter = [
   {
-    title: 'Productos',
-    url: '/dashboard/products',
+    title: "Productos",
+    url: "/dashboard/products",
   },
   {
-    title: 'Categorías',
-    url: '/dashboard/categories'
+    title: "Categorías",
+    url: "/dashboard/categories"
   },
   {
-    title: 'Slider',
-    url: '/dashboard/slider'
+    title: "Slider",
+    url: "/dashboard/slider"
   }
-]
+];
+
