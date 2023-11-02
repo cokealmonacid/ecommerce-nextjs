@@ -1,13 +1,14 @@
-'use client'
-import { useSession } from 'next-auth/react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Logout from './Logout'
+"use client";
+
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import Logout from "./Logout";
 
 const NavbarLogged = () => {
-  const {status} = useSession()
-  if (status !== 'authenticated') {
-    return null
+  const {status} = useSession();
+  if (status !== "authenticated") {
+    return null;
   }
 
   return (
@@ -22,7 +23,7 @@ const NavbarLogged = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavbarLogged
+export default NavbarLogged;

@@ -6,7 +6,7 @@ import { generateSHA1, generateSignature, getPublicIdCloudinary } from "@/utils/
 
 export const DELETE = async (req: NextRequest, { params }: { params: { id: string } }) => {
   const { id } = params;
-  const session = await getAuthSession()
+  const session = await getAuthSession();
 
   if (session) {
     try {
@@ -16,10 +16,10 @@ export const DELETE = async (req: NextRequest, { params }: { params: { id: strin
       const timestamp = new Date().getTime();
 
       const data = new FormData();
-      data.append('api_key', process.env.CLOUDINARY_API_KEY ?? '');
-      data.append('public_id', publicId);
-      data.append('signature', signature);
-      data.append('timestamp', timestamp.toString())
+      data.append("api_key", process.env.CLOUDINARY_API_KEY ?? "");
+      data.append("public_id", publicId);
+      data.append("signature", signature);
+      data.append("timestamp", timestamp.toString());
 
       const deleteFromCloudinaryResponse = await fetch(
         `${process.env.CLOUDINARY_URL}/destroy`,
@@ -36,11 +36,11 @@ export const DELETE = async (req: NextRequest, { params }: { params: { id: strin
 
       await prisma.imageSlider.delete({ where: { id } });
 
-      return new NextResponse(JSON.stringify({ message: 'DELETED_RESOURCE' }), { status: 200 });
+      return new NextResponse(JSON.stringify({ message: "DELETED_RESOURCE" }), { status: 200 });
     } catch (err) {
-      return new NextResponse(JSON.stringify({ message: 'SOMETHING_WENT_WRONG' }), { status: 500 });
+      return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
     }
   } else {
-    return new NextResponse(JSON.stringify({ message: 'NOT_AUTHENTICATED' }), { status: 401 });
+    return new NextResponse(JSON.stringify({ message: "NOT_AUTHENTICATED" }), { status: 401 });
   }
-}
+};

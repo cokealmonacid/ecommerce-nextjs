@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 const Contact = () => {
   return (
@@ -25,7 +25,7 @@ const Contact = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

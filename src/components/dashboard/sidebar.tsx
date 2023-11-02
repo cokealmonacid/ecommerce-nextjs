@@ -1,13 +1,14 @@
-'use client'
-import Image from "next/image"
-import Link from "next/link"
-import { usePathname } from 'next/navigation'
+"use client";
 
-import { dashboardRouter } from "@/utils/config"
-import { RoutesProps } from "@/utils/interfaces"
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { dashboardRouter } from "@/utils/config";
+import { RoutesProps } from "@/utils/interfaces";
 
 const Sidebar = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="w-1/6 bg-[#0b0e18] shadow-lg">
@@ -19,14 +20,14 @@ const Sidebar = () => {
           dashboardRouter.map((route: RoutesProps) => (
             <Link href={route.url} key={route.title}>
               <div className="py-4 px-8">
-                <h1 className={`text-xl text-white ${pathname.includes(route.url) ? 'font-bold' : 'font-thin'}`}>{route.title}</h1>
+                <h1 className={`text-xl text-white ${pathname.includes(route.url) ? "font-bold" : "font-thin"}`}>{route.title}</h1>
               </div>
             </Link>
           ))
         }
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

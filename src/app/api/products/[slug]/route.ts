@@ -8,10 +8,10 @@ export const GET = async (req: NextRequest, { params }: { params: { slug: string
   try {
     const productBySlug = await prisma.product.findMany({
       where: { slug }
-    })
+    });
 
-    return new NextResponse(JSON.stringify(productBySlug), { status: 200 })
+    return new NextResponse(JSON.stringify(productBySlug), { status: 200 });
   } catch (err) {
-    return new NextResponse(JSON.stringify({ message: 'Something went wrong!' }), { status: 500 })
+    return new NextResponse(JSON.stringify({ message: "Something went wrong!" }), { status: 500 });
   }
 };

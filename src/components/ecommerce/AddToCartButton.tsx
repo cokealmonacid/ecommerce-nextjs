@@ -1,11 +1,12 @@
-'use client'
-import { toast } from 'react-toastify'
+"use client";
 
-import { AddToCartButtonProps } from '@/utils/interfaces'
-import { useCartStore } from '@/utils/store'
+import { toast } from "react-toastify";
+
+import { AddToCartButtonProps } from "@/utils/interfaces";
+import { useCartStore } from "@/utils/store";
 
 const AddToCartButton = ({ product }: AddToCartButtonProps) => {
-  const { addToCart } = useCartStore()
+  const { addToCart } = useCartStore();
 
   const handleAddToCartClick = () => {
     addToCart({
@@ -16,16 +17,16 @@ const AddToCartButton = ({ product }: AddToCartButtonProps) => {
       brand: product.brand,
       price: product.price,
       quantity: 1
-    })
+    });
 
     toast.success("El producto ha sido agregado");
-  }
+  };
 
   return (
     <div className="w-[300px] flex justify-center md:justify-start self-center md:self-start">
       <button className="button" onClick={() => handleAddToCartClick()}>Agregar al carro</button>
     </div>
-  )
-}
+  );
+};
 
-export default AddToCartButton
+export default AddToCartButton;

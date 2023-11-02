@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-import { MenuProps } from '@/utils/interfaces'
-import { Category } from '@/utils/interfaces'
+import { MenuProps } from "@/utils/interfaces";
+import { Category } from "@/utils/interfaces";
 
 const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
-  const [showCategories, setShowCategories] = useState(false)
-  const router = useRouter()
+  const [showCategories, setShowCategories] = useState(false);
+  const router = useRouter();
 
   const handleClick = (route?: string) => {
-    handleMenu('mobile')
-    route && router.push(route)
-  }
+    handleMenu("mobile");
+    route && router.push(route);
+  };
 
   const handleShowCategories = () => {
-    setShowCategories(!showCategories)
-  }
+    setShowCategories(!showCategories);
+  };
 
   return (
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-stone-900/80 z-10">
@@ -24,7 +24,7 @@ const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
           <div className="md:hidden flex-1 mb-6" onClick={() => handleClick()}>
             <Image src="/close.png" alt="Close menu" width={20} height={20}/>
           </div>
-          <div className="pt-4" onClick={() => handleClick('/')}>
+          <div className="pt-4" onClick={() => handleClick("/")}>
             <h1 className="text-lg">HOME</h1>
             <div className="h-[1px] bg-stone-300 mt-4"></div>
           </div>
@@ -34,7 +34,7 @@ const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
           >
             <div className="flex justify-between">
             <h1 className="text-lg">PRODUCTOS</h1>
-            <h1 className="text-xl">{showCategories ? '-' : '+'}</h1>
+            <h1 className="text-xl">{showCategories ? "-" : "+"}</h1>
             </div>
             {
               showCategories && (
@@ -45,7 +45,7 @@ const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
                   aria-labelledby="headingOne"
                   data-te-parent="#accordionExample"
                 >
-                  <div className="py-4 uppercase cursor-pointer" onClick={() => handleClick('/products')}><h2 className="text-gray-400">Ver todos</h2></div>
+                  <div className="py-4 uppercase cursor-pointer" onClick={() => handleClick("/products")}><h2 className="text-gray-400">Ver todos</h2></div>
                   {
                     categories.map((category: Category) => (
                       <div className="py-4 uppercase cursor-pointer" key={category.id} onClick={() => handleClick(`/categories/${category.slug}`)}><h2 className="text-gray-400">{category.title}</h2></div>
@@ -56,13 +56,13 @@ const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
             }
             <div className="h-[1px] bg-stone-300 mt-4"></div>
           </div>
-          <div className="pt-4" onClick={() => handleClick('/contact')}>
+          <div className="pt-4" onClick={() => handleClick("/contact")}>
             <h1 className="text-lg">CONTACTO</h1>
             <div className="h-[1px] bg-stone-300 mt-4"></div>
           </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default MenuMobile;

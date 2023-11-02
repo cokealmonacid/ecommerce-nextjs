@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
 import {
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query'
+} from "@tanstack/react-query";
 
-import { ChildrenProps } from '@/utils/interfaces'
+import { ChildrenProps } from "@/utils/interfaces";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 const QueryProvider = ({ children }: ChildrenProps) => {
-  return <QueryClientProvider client={queryClient}>{ children }</QueryClientProvider>
-}
+  return <QueryClientProvider client={queryClient}>{ children }</QueryClientProvider>;
+};
 
-export default QueryProvider
+export default QueryProvider;

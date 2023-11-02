@@ -1,20 +1,21 @@
-'use client'
-import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+"use client";
 
-import { NavbarProps } from '@/utils/interfaces'
-import { useCartStore } from '@/utils/store'
-import MenuMobile from './MenuMobile'
-import Menu from './Menu'
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { NavbarProps } from "@/utils/interfaces";
+import { useCartStore } from "@/utils/store";
+import MenuMobile from "./MenuMobile";
+import Menu from "./Menu";
 
 const Navbar = ({ categories }: NavbarProps) => {
-  const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false })
-  const { totalItems } = useCartStore()
+  const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false });
+  const { totalItems } = useCartStore();
 
   const handleMenuVisibility = (opt: string) => {
-    setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] })
-  }
+    setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] });
+  };
 
 
   return (
@@ -23,10 +24,10 @@ const Navbar = ({ categories }: NavbarProps) => {
         <div className="container mx-auto flex items-center px-4">
           <div className="hidden md:flex flex-row gap-10 lg:gap-20 flex-1">
             <Link href="/"><h1>Home</h1></Link>
-            <div className="cursor-pointer" onClick={() => handleMenuVisibility('desktop')}><h1>Productos</h1></div>
+            <div className="cursor-pointer" onClick={() => handleMenuVisibility("desktop")}><h1>Productos</h1></div>
             <Link href="/contact"><h1>Contacto</h1></Link>
           </div>
-          <div className="md:hidden flex-1" onClick={() => handleMenuVisibility('mobile')}>
+          <div className="md:hidden flex-1" onClick={() => handleMenuVisibility("mobile")}>
             <Image src="/menu.png" alt="Menu" width={30} height={30} />
           </div>
           <Link href="/">
@@ -46,7 +47,7 @@ const Navbar = ({ categories }: NavbarProps) => {
       {menuVisibility.desktop && <Menu categories={categories} handleMenu={handleMenuVisibility}  />}
       {menuVisibility.mobile && <MenuMobile categories={categories}  handleMenu={handleMenuVisibility} />}
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

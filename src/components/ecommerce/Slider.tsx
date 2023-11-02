@@ -1,21 +1,22 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
+"use client";
 
-import { SliderProps } from '@/utils/interfaces'
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+
+import { SliderProps } from "@/utils/interfaces";
 
 const Slider = ({ imagesSlider }: SliderProps) => {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide(prev => prev === imagesSlider.length - 1  ? 0 : prev + 1)
-    }, 5000)
+      setCurrentSlide(prev => prev === imagesSlider.length - 1  ? 0 : prev + 1);
+    }, 5000);
 
     return () => {
-      clearInterval(interval)
-    }
-  }, [imagesSlider])
+      clearInterval(interval);
+    };
+  }, [imagesSlider]);
 
   return (
     <div className="flex flex-col h-[300px] md:h-[600px] lg:flex-row">
@@ -23,7 +24,7 @@ const Slider = ({ imagesSlider }: SliderProps) => {
         <Image src={imagesSlider[currentSlide].image} alt="" fill className="object-cover" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Slider
+export default Slider;

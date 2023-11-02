@@ -1,4 +1,4 @@
-import LoginForm from '@/components/ecommerce/LoginForm'
+import LoginForm from "@/components/ecommerce/LoginForm";
 
 const Login = () => {  
   return (
@@ -14,6 +14,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

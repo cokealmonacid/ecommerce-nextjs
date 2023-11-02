@@ -1,21 +1,21 @@
-import './../styles/globals.css'
-import './../styles/main.css'
-import 'react-toastify/dist/ReactToastify.css'
+import "./../styles/globals.css";
+import "./../styles/main.css";
+import "react-toastify/dist/ReactToastify.css";
 
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ToastContainer } from 'react-toastify'
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { ToastContainer } from "react-toastify";
 
-import AuthProvider from '@/providers/AuthProvider'
-import Sidebar from '@/components/dashboard/Sidebar'
-import Logout from '@/components/dashboard/Logout'
-import Back from '@/components/dashboard/Back'
-import QueryProvider from '@/providers/QueryProvider'
+import AuthProvider from "@/providers/AuthProvider";
+import Sidebar from "@/components/dashboard/Sidebar";
+import Logout from "@/components/dashboard/Logout";
+import Back from "@/components/dashboard/Back";
+import QueryProvider from "@/providers/QueryProvider";
 
 export const metadata: Metadata = {
-  title: 'Panel de Administración | Delakalle Skateshop 🛹',
-}
+  title: "Panel de Administración | Delakalle Skateshop 🛹",
+};
 
 export default async function RootLayout({
   children,
@@ -48,5 +48,5 @@ export default async function RootLayout({
         </QueryProvider>
       </body>
     </html>
-  )
+  );
 }

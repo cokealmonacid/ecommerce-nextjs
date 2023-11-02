@@ -1,20 +1,20 @@
-import Image from 'next/image'
-import { toast } from 'react-toastify'
+import Image from "next/image";
+import { toast } from "react-toastify";
 
-import { CartItem, CartWrapperProps } from '@/utils/interfaces'
-import { priceFormatter } from '@/utils/helpers'
-import { useCartStore } from '@/utils/store'
-import CounterCart from './CounterCart'
-import Divider from './Divider'
+import { CartItem, CartWrapperProps } from "@/utils/interfaces";
+import { priceFormatter } from "@/utils/helpers";
+import { useCartStore } from "@/utils/store";
+import CounterCart from "./CounterCart";
+import Divider from "./Divider";
 
 
 const CartWrapper = ({ products }: CartWrapperProps) => {
-  const { deleteFromCart, totalPrice } = useCartStore()
+  const { deleteFromCart, totalPrice } = useCartStore();
 
   const handleDeleteFromCartClick = (product: CartItem) => {
-    deleteFromCart(product)
+    deleteFromCart(product);
     toast.warning("Producto removido del carro");
-  }
+  };
 
   return (
     <section className="py-12 lg:w-3/4 lg:mx-auto">
@@ -65,7 +65,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CartWrapper
+export default CartWrapper;

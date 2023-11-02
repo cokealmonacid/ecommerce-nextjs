@@ -1,6 +1,6 @@
-import Image from 'next/image'
+import Image from "next/image";
 
-import Divider from './Divider'
+import Divider from "./Divider";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
         <h4>2023</h4>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

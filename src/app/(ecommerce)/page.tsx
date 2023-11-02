@@ -1,22 +1,22 @@
-import ProductsWrapper from '@/components/ecommerce/ProductsWrapper'
-import Slider from '@/components/ecommerce/Slider'
-import { Product, SliderImages } from '@/utils/interfaces'
-import { getData } from '@/utils/services'
+import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
+import Slider from "@/components/ecommerce/Slider";
+import { Product, SliderImages } from "@/utils/interfaces";
+import { getData } from "@/utils/services";
 
 export default async function Home() {
-  const imagesSlider: SliderImages[] = await getData('slider')
-  const products: Product[] = await getData('products/latest')
+  const imagesSlider: SliderImages[] = await getData("slider");
+  const products: Product[] = await getData("products/latest");
 
   return (
     <main>
       { imagesSlider.length && <Slider imagesSlider={imagesSlider}/>}
       <ProductsWrapper
         title={"ultimos productos"}
-        button={{ title: 'Ver más productos', url: '/products' }}
+        button={{ title: "Ver más productos", url: "/products" }}
         products={products}
         showed_products={4}
         show_button
       />
     </main>
-  )
+  );
 }

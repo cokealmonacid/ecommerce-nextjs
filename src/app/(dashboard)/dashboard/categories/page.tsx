@@ -1,24 +1,23 @@
-'use client'
-import Link from "next/link"
+"use client";
 
-import { CategoryWithProducts, Product } from "@/utils/interfaces"
-import Actions from "@/components/dashboard/Actions"
-import { getData } from "@/utils/services"
-import { useQuery } from "@tanstack/react-query"
-import { queryKeys } from "@/utils/consts"
-import Wrapper from "@/components/dashboard/Wrapper"
+import { CategoryWithProducts } from "@/utils/interfaces";
+import Actions from "@/components/dashboard/Actions";
+import { getData } from "@/utils/services";
+import { useQuery } from "@tanstack/react-query";
+import { queryKeys } from "@/utils/consts";
+import Wrapper from "@/components/dashboard/Wrapper";
 
 const Categories = () => {
   const { isLoading, data } = useQuery({
     queryKey: [queryKeys.GET_CATEGORIES],
     queryFn: () => {
-      return getData('categories');
+      return getData("categories");
     }
   });
 
   // POR HACER: Mejorar loading
   if (isLoading) {
-    return 'LOADING...'
+    return "LOADING...";
   }
 
   return (
@@ -49,8 +48,7 @@ const Categories = () => {
         </tbody>
       </table>
     </Wrapper>
-  )
-}
+  );
+};
 
-
-export default Categories
+export default Categories;
