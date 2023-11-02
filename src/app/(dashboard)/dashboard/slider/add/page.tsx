@@ -1,6 +1,5 @@
 'use client'
 
-import Image from "next/image"
 import { useState } from "react"
 import { toast } from 'react-toastify'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
