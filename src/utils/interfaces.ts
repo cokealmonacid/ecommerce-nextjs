@@ -120,3 +120,13 @@ export interface ImageInputProps {
   handleRemoveImage: () => void;
   handleUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface DashboardButtonProps {
+  title: string;
+  isDisabled: boolean;
+  isLoading: boolean;
+}
+
+export interface CategoryFormInputs {
+  categoryName: string;
+}
