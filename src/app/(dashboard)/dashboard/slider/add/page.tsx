@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import ErrorAlert from "@/components/shared/ErrorAlert";
-import LoadingDots from "@/components/ecommerce/LoadingDots";
 import ImageInput from "@/components/dashboard/ImageInput";
 import { postFormData } from "@/utils/services";
 import { responses } from "@/utils/language";
 import { queryKeys } from "@/utils/consts";
+import Button from "@/components/dashboard/Button";
 
 const Add = () => {
   const [file, setFile] = useState<File | undefined>();
@@ -49,9 +49,7 @@ const Add = () => {
       { mutation.error && (<ErrorAlert message={mutation.error.message} />)}
       <form className="p-4" onSubmit={handleSubmit}>
         <ImageInput file={file} handleUploadedImage={handleUploadedImage} handleRemoveImage={handleRemoveImage} />
-        <button className="bg-green-500 w-full rounded py-2 text-white font-semibold disabled:opacity-60 disabled:pb-3" disabled={!file || mutation.isPending}>
-          { mutation.isPending ? <LoadingDots color='#FFFFFF' /> : "Subir imagen"}
-        </button>
+        <Button title="Subir imagen" isLoading={mutation.isPending} isDisabled={!file || mutation.isPending} />
       </form>
     </div>
   );

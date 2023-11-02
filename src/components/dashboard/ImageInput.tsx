@@ -2,13 +2,13 @@ import Image from "next/image";
 
 import { ImageInputProps } from "@/utils/interfaces";
 
-const ImageInput = ({ file, handleRemoveImage, handleUploadedImage }: ImageInputProps) => {
+const ImageInput = ({ file }: ImageInputProps) => {
 
   if (file) {
     return (
       <div className="relative border-2 mb-4 m-1">
         <Image src={URL.createObjectURL(file)} alt="imagen subida" width={500} height={500} className="object-contain" />
-        <button className="rounded-full bg-red-500 text-white font-bold px-3 py-1 absolute top-1 right-1" onClick={handleRemoveImage}>X</button>
+        <button className="rounded-full bg-red-500 text-white font-bold px-3 py-1 absolute top-1 right-1">X</button>
       </div>
     );
   }
@@ -25,7 +25,7 @@ const ImageInput = ({ file, handleRemoveImage, handleUploadedImage }: ImageInput
         </svg>
         <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Seleccionar una imagen</p>
     </div>
-    <input type="file" className="opacity-0" accept="image/*" name="img" onChange={handleUploadedImage}/>
+    <input type="file" className="opacity-0" accept="image/*" name="img" />
     </label>
   );
 };
