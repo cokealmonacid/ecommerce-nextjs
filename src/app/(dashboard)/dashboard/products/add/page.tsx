@@ -4,13 +4,13 @@ import { useState } from "react"
 import { toast } from 'react-toastify'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
+import ImageInput from "@/components/dashboard/ImageInput"
 import ErrorAlert from "@/components/shared/ErrorAlert"
 import LoadingDots from "@/components/ecommerce/LoadingDots"
 import { postData } from "@/utils/services"
 import { responses } from "@/utils/language"
 import { slugify } from "@/utils/helpers"
 import { queryKeys } from "@/utils/consts"
-import ImageInput from "@/components/dashboard/ImageInput"
 
 const Add = () => {
   const [categoryName, setCategoryName] = useState<string | null>();
@@ -29,16 +29,16 @@ const Add = () => {
   }
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    if (!categoryName) return
+  //   e.preventDefault()
+  //   if (!categoryName) return
 
-    const slug = slugify(categoryName)
-    mutation.mutate({ title: categoryName, slug })
-  }
+  //   const slug = slugify(categoryName)
+  //   mutation.mutate({ title: categoryName, slug })
+  // }
 
-  if (mutation.isSuccess) {
-    toast.success(responses[mutation.data.message])
-    mutation.reset()
+  // if (mutation.isSuccess) {
+  //   toast.success(responses[mutation.data.message])
+  //   mutation.reset()
   }
 
   return (
@@ -50,7 +50,7 @@ const Add = () => {
         <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded px-1 py-2 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-product-name" type="text" name="name" onChange={handleInputs}/>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-product-category">Categoría</label>
         <select id="category" className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded px-1 py-2 mb-3 leading-tight focus:outline-none focus:bg-white">
-          <option selected disabled>Choose a country</option>
+          <option selected disabled>Selecciona una categoría</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="FR">France</option>
