@@ -3,11 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 
 import { priceFormatter } from "@/utils/helpers";
 import { ProductWithCategory } from "@/utils/interfaces";
+import Wrapper from "@/components/dashboard/Wrapper";
+import LoadingSpinner from "@/components/dashboard/LoadingSpinner";
 import ToggleStatus from "@/components/dashboard/ToggleStatus";
 import Actions from "@/components/dashboard/Actions";
 import { queryKeys } from "@/utils/consts";
 import { getData } from "@/utils/services";
-import Wrapper from "@/components/dashboard/Wrapper";
 
 const Dashboard = () => {
   const { isLoading, data} = useQuery({
@@ -17,9 +18,8 @@ const Dashboard = () => {
     }
   });
 
-  // POR HACER: Mejorar loading
   if (isLoading) {
-    return "LOADING...";
+    return <LoadingSpinner />;
   }
 
   return (

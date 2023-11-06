@@ -3,10 +3,11 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 
 import { SliderImages } from "@/utils/interfaces";
-import Actions from "@/components/dashboard/Actions";
 import { getData } from "@/utils/services";
 import { queryKeys } from "@/utils/consts";
 import Wrapper from "@/components/dashboard/Wrapper";
+import LoadingSpinner from "@/components/dashboard/LoadingSpinner";
+import Actions from "@/components/dashboard/Actions";
 
 const Slider = () => {
   const { isLoading, data } = useQuery({
@@ -16,9 +17,8 @@ const Slider = () => {
     }
   });
 
-  // POR HACER: Mejorar loading
   if (isLoading) {
-    return "LOADING...";
+    return <LoadingSpinner />;
   }
 
   return (
