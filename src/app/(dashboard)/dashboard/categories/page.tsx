@@ -1,11 +1,12 @@
 "use client";
 
 import { CategoryWithProducts } from "@/utils/interfaces";
-import Actions from "@/components/dashboard/Actions";
 import { getData } from "@/utils/services";
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/utils/consts";
 import Wrapper from "@/components/dashboard/Wrapper";
+import LoadingSpinner from "@/components/dashboard/LoadingSpinner";
+import Actions from "@/components/dashboard/Actions";
 
 const Categories = () => {
   const { isLoading, data } = useQuery({
@@ -15,9 +16,8 @@ const Categories = () => {
     }
   });
 
-  // POR HACER: Mejorar loading
   if (isLoading) {
-    return "LOADING...";
+    return <LoadingSpinner />;
   }
 
   return (
