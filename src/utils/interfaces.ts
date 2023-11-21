@@ -130,3 +130,7 @@ export interface DashboardButtonProps {
 export interface CategoryFormInputs {
   categoryName: string;
 }
+
+export interface SliderFormInputs {
+  file: File;
+}
