@@ -1,45 +1,50 @@
 "use client";
-import Image from "next/image";
-import { useForm, SubmitHandler } from "react-hook-form";
 
-import { SliderFormInputs } from "@/utils/interfaces";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { queryKeys } from "@/utils/consts";
+import { postFormData } from "@/utils/services";
+import { ImageInputValues } from "@/utils/interfaces";
 import Button from "./Button";
+import ImageInput from "./ImageInput";
+import { responses } from "@/utils/language";
+import { toast } from "react-toastify";
 
 const SliderForm = () => {
-  const { register, handleSubmit, watch } = useForm<SliderFormInputs>();
+  const queryClient = useQueryClient();
+  const { formState: { errors }, register, handleSubmit, resetField, getValues, watch } = useForm<ImageInputValues>();
 
-  const onSubmit: SubmitHandler<SliderFormInputs> = data => {
-    console.log("data: ", data);
-  }; 
+  const onSubmit: SubmitHandler<ImageInputValues> = values => {
+    const data = new FormData();
+    data.set("file", values.Image[0]);
+    mutation.mutate(data);
+  };
+  
+  const mutation = useMutation({
+    mutationFn: (data: FormData) => postFormData("slider", data),
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: [queryKeys.GET_SLIDERS] });
+    }
+  });
+
+  if (mutation.isSuccess) {
+    toast.success(responses[mutation.data.message]);
+    mutation.reset();
+  }
+
+  if (mutation.isError) {
+    toast.error(responses[mutation.error.message]);
+    mutation.reset();
+  }
 
   return(
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
-        {
-          watch("file") ?
-          (
-            <div className="relative border-2 mb-4 m-1">
-              <Image src={""} alt="imagen subida" width={500} height={500} className="object-contain" />
-              <button className="rounded-full bg-red-500 text-white font-bold px-3 py-1 absolute top-1 right-1">X</button>
-            </div>
-          ) : (
-            <label className="flex cursor-pointer flex-col w-full h-32 border-2 rounded-md border-dashed mb-4 hover:bg-gray-100 hover:border-gray-300">
-              <div className="flex flex-col items-center justify-center pt-7">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    className="w-12 h-12 text-gray-400 group-hover:text-gray-600" viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path fillRule="evenodd"
-                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                        clipRule="evenodd" />
-                </svg>
-                <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Seleccionar una imagen</p>
-              </div>
-              <input type="file" className="opacity-0" accept="image/*" {...register("file")} />
-            </label>
-          )
-        }
+        <ImageInput label="Image" register={register} resetField={resetField} getValues={getValues} watch={watch} required />
+        { errors.Image && <p className="text-red-500 font-semibold text-xs">Debes agregar una imagen</p> }
       </div>
-      <Button title="Agregar imagen" isDisabled={false} isLoading={false} />
+      <Button title="Agregar imagen" isDisabled={mutation.isPending} isLoading={mutation.isPending} />
     </form>
   );
 

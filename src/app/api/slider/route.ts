@@ -45,6 +45,7 @@ export const POST = async (req: NextRequest) => {
     
       return new NextResponse(JSON.stringify({ message: "CREATED_SUCCESS_IMAGE" }), { status: 201 });
     } catch (err) {
+      console.log(err);
       return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
     }
   } else {

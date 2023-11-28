@@ -1,3 +1,5 @@
+import { Path, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormWatch } from "react-hook-form";
+
 /* eslint-disable no-unused-vars */
 export interface MenuProps {
   categories: Category[];
@@ -115,12 +117,6 @@ export interface WrapperProps {
   url: string;
 }
 
-export interface ImageInputProps {
-  file: File | undefined;
-  handleRemoveImage: () => void;
-  handleUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
 export interface DashboardButtonProps {
   title: string;
   isDisabled: boolean;
@@ -131,6 +127,15 @@ export interface CategoryFormInputs {
   categoryName: string;
 }
 
-export interface SliderFormInputs {
-  file: File;
+export interface ImageInputValues {
+  "Image": string;
 }
+
+export interface ImageInputProps {
+  label: Path<ImageInputValues>;
+  required: boolean;
+  getValues: UseFormGetValues<ImageInputValues>;
+  register: UseFormRegister<ImageInputValues>;
+  resetField: UseFormResetField<ImageInputValues>
+  watch: UseFormWatch<ImageInputValues>;
+};
