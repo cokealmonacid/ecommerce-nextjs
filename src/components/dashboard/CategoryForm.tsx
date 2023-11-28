@@ -33,6 +33,11 @@ const CategoryForm = () => {
     mutation.reset();
   }
 
+  if (mutation.isError) {
+    toast.error(responses[mutation.error.message]);
+    mutation.reset();
+  }
+
   return (
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
       { mutation.error && (<ErrorAlert message={mutation.error.message} />)}
