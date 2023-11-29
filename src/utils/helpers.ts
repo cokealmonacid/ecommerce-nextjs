@@ -49,3 +49,16 @@ export const slugify = (text: string) => {
     .replace(/\-\-+/g, "-")      
     .replace(/\-$/g, "");
 };
+
+type NonEmptyObject<T> = {
+  [K in keyof T]: T[K] extends string ? (T[K] extends "" ? never : T[K]) : T[K];
+};
+
+export function validateNonEmptyObject<T>(obj: NonEmptyObject<T>): boolean {
+  for (const key in obj) {
+    if (!obj[key]) {
+      return false;
+    }
+  }
+  return true;
+};

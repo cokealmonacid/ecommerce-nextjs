@@ -7,5 +7,7 @@ export const responses: {[key: string]: string} = {
   "NOT_AUTHENTICATED": "Debes estar autenticado para realizar esta operación.",
   "CREATED_SUCCESS_IMAGE": "La imagen ha sido agregada!",
   "DELETED_RESOURCE": "Se ha eliminado el elemento exitosamente!",
-  "CREATED_SUCCESS_CATEGORY": "La categoría ha sido agregada!"
+  "CREATED_SUCCESS_CATEGORY": "La categoría ha sido agregada!",
+  "CREATED_SUCCESS_PRODUCT": "El producto ha sido agregado!",
+  "MISSING_VALUES": "Ingreso no válido."
 };

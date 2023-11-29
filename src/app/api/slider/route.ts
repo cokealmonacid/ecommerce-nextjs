@@ -22,7 +22,7 @@ export const POST = async (req: NextRequest) => {
     const file: File | null = data.get("file") as unknown as File;
   
     if (!file) {
-      return new NextResponse(JSON.stringify({ message: "NO_IMAGE" }), { status: 400 });
+      return new NextResponse(JSON.stringify({ message: "NO_IMAGE" }), { status: 422 });
     }
 
     try {

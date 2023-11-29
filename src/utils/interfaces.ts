@@ -1,4 +1,4 @@
-import { Path, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormWatch } from "react-hook-form";
+import { FieldValues, Path, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormWatch } from "react-hook-form";
 
 /* eslint-disable no-unused-vars */
 export interface MenuProps {
@@ -124,18 +124,29 @@ export interface DashboardButtonProps {
 }
 
 export interface CategoryFormInputs {
-  categoryName: string;
+  title: string;
 }
 
 export interface ImageInputValues {
   "Image": string;
 }
 
-export interface ImageInputProps {
-  label: Path<ImageInputValues>;
-  required: boolean;
-  getValues: UseFormGetValues<ImageInputValues>;
-  register: UseFormRegister<ImageInputValues>;
-  resetField: UseFormResetField<ImageInputValues>
-  watch: UseFormWatch<ImageInputValues>;
+export interface ProductFormInputs extends ImageInputValues {
+  title?: string;
+  brand?: string;
+  category_id?: string;
+  slug?: string;
+  price?: number;
+  description?: string;
 };
+
+export interface ImageInputProps<T extends FieldValues> {
+  label: Path<T>;
+  required: boolean;
+  getValues: UseFormGetValues<T>;
+  register: UseFormRegister<T>;
+  resetField: UseFormResetField<T>
+  watch: UseFormWatch<T>;
+};
+
+export interface ProductFormProps extends NavbarProps {};
