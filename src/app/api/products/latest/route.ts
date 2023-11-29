@@ -6,7 +6,7 @@ import { prisma } from "@/utils/connect";
 export const GET = async () => {
   try {
     const products = await prisma.product.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { createdAt: "asc" },
       where: { active: true }
     });
     return new NextResponse(JSON.stringify(products), { status: 200 });
