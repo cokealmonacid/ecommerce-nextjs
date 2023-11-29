@@ -37,9 +37,9 @@ export default async function RootLayout({
                 </Link>
                 <Logout />
               </div>
-              <section className="my-2 py-6 bg-white shadow-lg rounded-md">
-              <Back />
-              { children }
+              <section className="my-2 py-6 bg-white shadow-lg rounded-md overflow-y-scroll">
+                <Back />
+                { children }
               </section>
             </div>
           </div>

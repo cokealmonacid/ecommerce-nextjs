@@ -10,7 +10,6 @@ import { postData } from "@/utils/services";
 import { queryKeys } from "@/utils/consts";
 import { responses } from "@/utils/language";
 import Button from "./Button";
-import ErrorAlert from "../shared/ErrorAlert";
 
 const CategoryForm = () => {
   const queryClient = useQueryClient();
@@ -24,8 +23,8 @@ const CategoryForm = () => {
   });
 
   const onSubmit: SubmitHandler<CategoryFormInputs> = data => {
-    const slug = slugify(data.categoryName);
-    mutation.mutate({ title: data.categoryName, slug });
+    const slug = slugify(data.title);
+    mutation.mutate({ title: data.title, slug });
   };
 
   if (mutation.isSuccess) {
@@ -40,11 +39,10 @@ const CategoryForm = () => {
 
   return (
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
-      { mutation.error && (<ErrorAlert message={mutation.error.message} />)}
       <div className="mb-4">
         <label className="dashboard-label">Nombre</label>
-        <input className="dashboard-input"  {...register("categoryName", { required: true })}/>
-        { errors.categoryName && <p className="text-red-500 font-semibold text-xs">Debes agregar un nombre</p> }
+        <input className="dashboard-input"  {...register("title", { required: true })}/>
+        { errors.title && <p className="text-red-500 font-semibold text-xs">Debes agregar un nombre</p> }
       </div>
       <Button title="Crear categoría" isDisabled={mutation.isPending} isLoading={mutation.isPending} />
     </form>

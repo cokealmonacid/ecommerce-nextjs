@@ -1,18 +1,22 @@
-import { ImageInputProps } from "@/utils/interfaces";
 import Image from "next/image";
 
-const ImageInput = ({ label, required, getValues, register, resetField, watch }: ImageInputProps) => {
+import { ImageInputProps, ImageInputValues, ProductFormInputs } from "@/utils/interfaces";
 
+const ImageInput = ({ label, required, getValues, register, resetField, watch }: ImageInputProps<ImageInputValues | ProductFormInputs>) => {
+  let image = "";
   const handleReset = () => resetField(label);
 
   if (watch("Image")) {
-    const image = getValues("Image");
+    image = getValues("Image");
+  }
+
+  if (image && image.length) {
     // @ts-ignore
     const url = URL.createObjectURL(image[0]);
 
     return (
-      <div className="relative border-2 mb-4 m-1">
-        <Image src={url} alt="Imagen subida" width={500} height={500} className="object-contain" style={{ width: 500, height: 500 }} />
+      <div className="relative border-2 mb-4 m-1 flex justify-center">
+        <Image src={url} alt="Imagen subida" width={300} height={300} className="object-contain" style={{ width: 300, height: 300 }} />
         <button className="rounded-full bg-red-500 text-white font-bold px-3 py-1 absolute top-1 right-1" onClick={handleReset}>X</button>
       </div>
     );
@@ -26,7 +30,7 @@ const ImageInput = ({ label, required, getValues, register, resetField, watch }:
         </svg>
         <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Seleccionar una imagen</p>
       </div>
-      <input type="file" className="opacity-0" accept="image/*" {...register(label, { required })} />
+      <input type="file" className="opacity-0" accept="image/*" {...register(label, { required: required ? "Debes agregar una imagen" : false })} />
     </label>
   );
 };
