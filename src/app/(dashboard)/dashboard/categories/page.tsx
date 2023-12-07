@@ -37,10 +37,7 @@ const Categories = () => {
             <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.title}</td>
             <td className="px-6 py-4">{category._count.products}</td>
             <td className="px-6 py-4">
-              <Actions
-                remove
-                edit
-              />
+              <Actions id={category.id.toString()} url="categories/remove" queryKey={[queryKeys.GET_CATEGORIES]} remove edit />
             </td>
           </tr>
         ))
