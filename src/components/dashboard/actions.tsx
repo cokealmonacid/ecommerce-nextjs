@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import { deleteData } from "@/utils/services";
 import { responses } from "@/utils/language";
+import LoadingDots from "../ecommerce/LoadingDots";
 
 interface ActionsProps {
   url?: string;
@@ -12,21 +14,39 @@ interface ActionsProps {
   edit?: boolean;
   remove?: boolean;
   view?: boolean;
+  queryKey?: QueryKey;
 }
 
 /** AGREGAR CARGANDO AL BORRAR **/
 
-const Actions = ({ edit, remove, view , id = "", url = "" }: ActionsProps) => {
-  const handleRemove = async () => {
-    const res = await deleteData(url, id);
-    const { ok } = res;
-    const { message } = await res.json();
-    if (ok) {
-      toast.success(responses[message]);
-    } else {
-      toast.error(responses[message]);
+const Actions = ({ edit, remove, view , id = "", url = "", queryKey }: ActionsProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const res = await deleteData(url, id);
+
+      return res.json();
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey });
     }
-  };
+  });
+
+  const handleRemove = () => mutation.mutate();
+
+  if (mutation.isError) {
+    toast.error(responses[mutation.error.message]);
+    mutation.reset();
+  }
+
+  if (mutation.isSuccess) {
+    toast.success(responses[mutation.data.message]);
+    mutation.reset();
+  }
+
+  if (mutation.isPending) {
+    return <LoadingDots />;
+  }
 
   return (
     <div className="flex gap-2">

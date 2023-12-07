@@ -20,6 +20,11 @@ export const deleteData = async (url: string, id: string) => {
     method: "DELETE"
   });
 
+  if (!res.ok) {
+    const { message } = await res.json();
+    throw new Error(message);
+  }
+
   return res;
 };
 

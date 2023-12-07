@@ -9,5 +9,6 @@ export const responses: {[key: string]: string} = {
   "DELETED_RESOURCE": "Se ha eliminado el elemento exitosamente!",
   "CREATED_SUCCESS_CATEGORY": "La categoría ha sido agregada!",
   "CREATED_SUCCESS_PRODUCT": "El producto ha sido agregado!",
-  "MISSING_VALUES": "Ingreso no válido."
+  "MISSING_VALUES": "Ingreso no válido.",
+  "REMOVE_PRODUCTS_BEFORE_DELETE": "Categoría con uno o más productos asociados, debes eliminarlos antes."
 };

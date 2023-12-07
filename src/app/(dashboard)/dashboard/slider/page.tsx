@@ -35,7 +35,7 @@ const Slider = () => {
           data.map((slider: SliderImages) => (
             <tr className="bg-white border-b hover:bg-gray-100 cursor-pointer" key={slider.id}>
               <td className="px-6 py-4"><Image src={slider.image} alt={slider.image} height={500} width={500} style={{ width: "auto", height: "auto" }} priority /></td>
-              <td className="px-6 py-4 flex flex-col justify-center items-center"><Actions id={slider.id} url="slider" remove/></td>
+              <td className="px-6 py-4 flex flex-col justify-center items-center"><Actions id={slider.id} url="slider" queryKey={[queryKeys.GET_SLIDERS]} remove/></td>
             </tr>
           ))}
         </tbody>
