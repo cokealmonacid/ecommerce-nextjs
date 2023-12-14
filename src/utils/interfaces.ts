@@ -150,3 +150,7 @@ export interface ImageInputProps<T extends FieldValues> {
 };
 
 export interface ProductFormProps extends NavbarProps {};
+
+export interface CategoryFormProps {
+  category?: Category
+};

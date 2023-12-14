@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -20,6 +21,7 @@ interface ActionsProps {
 }
 
 const Actions = ({ edit, remove, view , id = "", url = "", slug = "", queryKey }: ActionsProps) => {
+  const pathname = usePathname();
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async () => {
@@ -51,7 +53,7 @@ const Actions = ({ edit, remove, view , id = "", url = "", slug = "", queryKey }
   return (
     <div className="flex gap-2">
       { view && <Link href={`/products/${slug}`}><div className="cursor-pointer"><Image src="/eye.png" alt="Ver detalle" width={20} height={20}/></div></Link> }
-      { edit && <div className="cursor-pointer"><Image src="/pencil.png" alt="Ver detalle" width={20} height={20}/></div> }
+      { edit && <Link href={`${pathname}/edit/${slug}`}><div className="cursor-pointer"><Image src="/pencil.png" alt="Ver detalle" width={20} height={20}/></div></Link> }
       { remove && <div className="cursor-pointer" onClick={handleRemove}><Image src="/trash.png" alt="Ver detalle" width={20} height={20}/></div>}
     </div>
   );

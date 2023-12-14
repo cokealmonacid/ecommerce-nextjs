@@ -15,6 +15,15 @@ export const postData = async (url: string, body: {[key: string] : string}) => {
   return res.json();
 };
 
+export const putData = async (url: string, body: {[key: string] : string}) => {
+  const res = await fetch(`http://localhost:3000/api/${url}`, {
+    method: "PUT",
+    body: JSON.stringify(body)
+  });
+
+  return res.json();
+};
+
 export const deleteData = async (url: string, id: string) => {
   const res = await fetch(`http://localhost:3000/api/${url}/${id}`, {
     method: "DELETE"
