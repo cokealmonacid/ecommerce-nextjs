@@ -32,3 +32,25 @@ export const POST = async (req: NextRequest) => {
     return new NextResponse(JSON.stringify({ message: "NOT_AUTHENTICATED" }), { status: 401 });
   }
 };
+
+// UPDATE CATEGORY
+export const PUT = async (req: NextRequest) => {
+  const session = await getAuthSession();
+
+  if (session) {
+    try {
+      const data = await req.json();
+      await prisma.category.update({
+        where: { id: data.id },
+        data
+      });
+
+      return new NextResponse(JSON.stringify({ message: "EDITED_SUCCESS_CATEGORY" }), { status: 202 });
+    } catch (err) {
+      console.log(err);
+      return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
+    }
+  } else {
+    return new NextResponse(JSON.stringify({ message: "NOT_AUTHENTICATED" }), { status: 401 });
+  }
+};
