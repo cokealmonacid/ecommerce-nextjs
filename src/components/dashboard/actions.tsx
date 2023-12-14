@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -10,16 +11,15 @@ import LoadingDots from "../ecommerce/LoadingDots";
 
 interface ActionsProps {
   url?: string;
-  id?: string;
   edit?: boolean;
   remove?: boolean;
   view?: boolean;
   queryKey?: QueryKey;
+  id?: string;
+  slug?: string;
 }
 
-/** AGREGAR CARGANDO AL BORRAR **/
-
-const Actions = ({ edit, remove, view , id = "", url = "", queryKey }: ActionsProps) => {
+const Actions = ({ edit, remove, view , id = "", url = "", slug = "", queryKey }: ActionsProps) => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async () => {
@@ -50,7 +50,7 @@ const Actions = ({ edit, remove, view , id = "", url = "", queryKey }: ActionsPr
 
   return (
     <div className="flex gap-2">
-      { view && <div className="cursor-pointer"><Image src="/eye.png" alt="Ver detalle" width={20} height={20}/></div> }
+      { view && <Link href={`/products/${slug}`}><div className="cursor-pointer"><Image src="/eye.png" alt="Ver detalle" width={20} height={20}/></div></Link> }
       { edit && <div className="cursor-pointer"><Image src="/pencil.png" alt="Ver detalle" width={20} height={20}/></div> }
       { remove && <div className="cursor-pointer" onClick={handleRemove}><Image src="/trash.png" alt="Ver detalle" width={20} height={20}/></div>}
     </div>
