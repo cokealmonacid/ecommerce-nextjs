@@ -43,7 +43,7 @@ const Dashboard = () => {
                 <td className="px-6 py-4">{priceFormatter(product.price)}</td>
                 <td className="px-6 py-4"><ToggleStatus status={product.active}/></td>
                 <td className="px-6 py-4">
-                  <Actions id={product.id.toString()} url="products/remove" queryKey={[queryKeys.GET_PRODUCTS]} view remove edit />
+                  <Actions id={product.id.toString()} slug={product.slug} url="products/remove" queryKey={[queryKeys.GET_PRODUCTS]} view remove edit />
                 </td>
               </tr>
             ))
