@@ -9,14 +9,21 @@ import ToggleStatus from "@/components/dashboard/ToggleStatus";
 import Actions from "@/components/dashboard/Actions";
 import { queryKeys } from "@/utils/consts";
 import { getData } from "@/utils/services";
+import Empty from "@/components/dashboard/Empty";
 
 const Dashboard = () => {
-  const { isLoading, data} = useQuery({
+  const { isLoading, isSuccess, data} = useQuery({
     queryKey: [queryKeys.GET_PRODUCTS],
     queryFn: () => {
       return getData("products");
     }
   });
+
+  if (isSuccess && !data.length) {
+    return (
+      <Empty title="productos" url="dashboard/products" />
+    );
+  }
 
   if (isLoading) {
     return <LoadingSpinner />;

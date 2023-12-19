@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -8,6 +7,7 @@ import { toast } from "react-toastify";
 
 import { deleteData } from "@/utils/services";
 import { responses } from "@/utils/language";
+import { Edit, Remove, View } from "@/utils/icons";
 import LoadingDots from "../ecommerce/LoadingDots";
 
 interface ActionsProps {
@@ -52,9 +52,9 @@ const Actions = ({ edit, remove, view , id = "", url = "", slug = "", queryKey }
 
   return (
     <div className="flex gap-2">
-      { view && <Link href={`/products/${slug}`}><div className="cursor-pointer"><Image src="/eye.png" alt="Ver detalle" width={20} height={20}/></div></Link> }
-      { edit && <Link href={`${pathname}/edit/${slug}`}><div className="cursor-pointer"><Image src="/pencil.png" alt="Ver detalle" width={20} height={20}/></div></Link> }
-      { remove && <div className="cursor-pointer" onClick={handleRemove}><Image src="/trash.png" alt="Ver detalle" width={20} height={20}/></div>}
+      { view && <Link className="cursor-pointer" href={`/products/${slug}`}><View /></Link> }
+      { edit && <Link className="cursor-pointer" href={`${pathname}/edit/${slug}`}><Edit /></Link> }
+      { remove && <div className="cursor-pointer" onClick={handleRemove}><Remove /></div>}
     </div>
   );
 };

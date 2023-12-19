@@ -1,14 +1,15 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import Image from "next/image";
+
+import { Exit } from "@/utils/icons";
 
 const Logout = () => {
   const handleLogout = () => signOut();
 
   return (
     <button onClick={handleLogout}>
-      <Image src="/logout.png" alt="Cerrar sesión" width={20} height={20} />
+      <Exit />
     </button>
   );
 };

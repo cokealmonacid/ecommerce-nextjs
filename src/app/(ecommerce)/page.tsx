@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <main>
-      { imagesSlider.length && <Slider imagesSlider={imagesSlider}/>}
+      { imagesSlider.length && <Slider imagesSlider={imagesSlider} />}
       <ProductsWrapper
         title={"ultimos productos"}
         button={{ title: "Ver más productos", url: "/products" }}

@@ -8,14 +8,22 @@ import { queryKeys } from "@/utils/consts";
 import Wrapper from "@/components/dashboard/Wrapper";
 import LoadingSpinner from "@/components/dashboard/LoadingSpinner";
 import Actions from "@/components/dashboard/Actions";
+import Empty from "@/components/dashboard/Empty";
 
 const Slider = () => {
-  const { isLoading, data } = useQuery({
+  const { isLoading, isSuccess, data } = useQuery({
     queryKey: [queryKeys.GET_SLIDERS],
     queryFn: () => {
       return getData("slider");
     }
   });
+
+  if (isSuccess && !data.length) {
+    return (
+      <Empty title="imágenes" url="dashboard/slider" />
+    );
+  }
+
 
   if (isLoading) {
     return <LoadingSpinner />;
