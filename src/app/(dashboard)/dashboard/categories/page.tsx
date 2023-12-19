@@ -7,14 +7,21 @@ import { queryKeys } from "@/utils/consts";
 import Wrapper from "@/components/dashboard/Wrapper";
 import LoadingSpinner from "@/components/dashboard/LoadingSpinner";
 import Actions from "@/components/dashboard/Actions";
+import Empty from "@/components/dashboard/Empty";
 
 const Categories = () => {
-  const { isLoading, data } = useQuery({
+  const { isLoading, isSuccess, data } = useQuery({
     queryKey: [queryKeys.GET_CATEGORIES],
     queryFn: () => {
       return getData("categories");
     }
   });
+
+  if (isSuccess && !data.length) {
+    return (
+      <Empty title="categorías" url="dashboard/categories" />
+    );
+  }
 
   if (isLoading) {
     return <LoadingSpinner />;

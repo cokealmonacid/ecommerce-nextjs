@@ -6,6 +6,7 @@ import { priceFormatter } from "@/utils/helpers";
 import { useCartStore } from "@/utils/store";
 import CounterCart from "./CounterCart";
 import Divider from "./Divider";
+import { Remove } from "@/utils/icons";
 
 
 const CartWrapper = ({ products }: CartWrapperProps) => {
@@ -33,12 +34,12 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
               <div className="flex flex-col items-center justify-center mb-10 md:flex-row md:justify-between" key={product.id}>
                 <div className="flex items-center">
                   <Image src={product.img} alt={product.title} className="object-contain" width={200} height={300}/>
-                  <div className="hidden md:block">
+                  <div className="hidden md:block ml-4">
                     <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
                     <h3 className="font-semibold uppercase text-xl text-stone-500">{priceFormatter(product.price)}</h3>
                     <div className="flex gap-5">
                       <CounterCart product={product} />
-                      <button type="button" onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></button>
+                      <button type="button" onClick={() => handleDeleteFromCartClick(product)} className="ml-2 cursor-pointer"><Remove /></button>
                     </div>
                   </div>
                 </div>
@@ -46,7 +47,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
                   <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
                   <h3>{product.quantity} x ${product.price * product.quantity}</h3>
                   <CounterCart product={product} />
-                  <div onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer md:hidden my-4"><Image src="/remove.png" width={25} height={25} alt="Remover producto" /></div>
+                  <div onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer md:hidden my-4"><Remove /></div>
                 </div>
                 <h3 className="hidden md:block">{product.quantity} x {priceFormatter(product.price * product.quantity)}</h3>
               </div>

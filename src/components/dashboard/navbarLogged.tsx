@@ -1,9 +1,9 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import Logout from "./Logout";
+import { AdminPanel } from "@/utils/icons";
 
 const NavbarLogged = () => {
   const {status} = useSession();
@@ -12,13 +12,11 @@ const NavbarLogged = () => {
   }
 
   return (
-    <div className="bg-black">
+    <div className="bg-slate-900">
       <div className="container mx-auto flex items-center text-white px-4 py-2 justify-between">
         <p>¡Hola, Delakalleskateshop!</p>
         <div className="flex gap-4">
-          <Link href="/dashboard/products">
-            <Image src="/dashboard.png" alt="Panel de administración" width={20} height={20} />          
-          </Link>
+          <Link href="/dashboard/products"><AdminPanel /></Link>
           <Logout />
         </div>
       </div>

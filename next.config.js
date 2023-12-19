@@ -2,9 +2,11 @@
 const nextConfig = {
   images: {
     domains: [
-      'res.cloudinary.com'
+      "res.cloudinary.com",
+      "flowbite.com"
     ]
   }
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
+

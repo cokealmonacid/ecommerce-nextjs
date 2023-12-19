@@ -1,5 +1,5 @@
 .button {
-  @apply bg-stone-700;
+  @apply bg-stone-500;
   @apply text-white;
   @apply py-4;
   @apply px-12; 
@@ -9,7 +9,7 @@
   @apply transition-colors;
   
   &:hover {
-    @apply bg-black;
+    @apply bg-stone-900;
   }
 }
 

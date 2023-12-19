@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 import { MenuProps } from "@/utils/interfaces";
 import { Category } from "@/utils/interfaces";
+import { Close } from "@/utils/icons";
 
 const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
   const [showCategories, setShowCategories] = useState(false);
@@ -21,9 +21,7 @@ const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
   return (
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-stone-900/80 z-10">
       <div className="bg-white w-4/5 h-screen px-4 py-6">
-          <div className="md:hidden flex-1 mb-6" onClick={() => handleClick()}>
-            <Image src="/close.png" alt="Close menu" width={20} height={20}/>
-          </div>
+          <div className="md:hidden flex-1 mb-6" onClick={() => handleClick()}><Close /></div>
           <div className="pt-4" onClick={() => handleClick("/")}>
             <h1 className="text-lg">HOME</h1>
             <div className="h-[1px] bg-stone-300 mt-4"></div>

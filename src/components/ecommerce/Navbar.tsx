@@ -8,6 +8,7 @@ import { NavbarProps } from "@/utils/interfaces";
 import { useCartStore } from "@/utils/store";
 import MenuMobile from "./MenuMobile";
 import Menu from "./Menu";
+import { Burger, Instagram, ShoppingCart } from "@/utils/icons";
 
 const Navbar = ({ categories }: NavbarProps) => {
   const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false });
@@ -27,18 +28,16 @@ const Navbar = ({ categories }: NavbarProps) => {
             <div className="cursor-pointer" onClick={() => handleMenuVisibility("desktop")}><h1>Productos</h1></div>
             <Link href="/contact"><h1>Contacto</h1></Link>
           </div>
-          <div className="md:hidden flex-1" onClick={() => handleMenuVisibility("mobile")}>
-            <Image src="/menu.png" alt="Menu" width={30} height={30} />
-          </div>
+          <div className="md:hidden flex-1" onClick={() => handleMenuVisibility("mobile")}><Burger /></div>
           <Link href="/">
             <Image src="/logo.png" alt="Delakalle Skateshop" width={80} height={80} />
           </Link>
           <div className="flex flex-row gap-8 flex-1 justify-end">
-            <a href="https://www.instagram.com/delakalleskateshop/"><Image src="/instagram.png" alt="Delakalle Skateshop instagram" width={28} height={28} /></a>
-            <Link href="/cart">
-              <Image src="/cart.png" alt="Delakalle Skateshop carro de compras" width={30} height={30} />
+            <a className="p-4" href="https://www.instagram.com/delakalleskateshop/"><Instagram /></a>
+            <Link href="/cart" className="relative p-4">
+              <ShoppingCart />
               {
-                totalItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center ml-5 top-5 py-1 px-2">{totalItems}</span>
+                totalItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center py-1 px-2 top-1 right-1">{totalItems}</span>
               }
             </Link>
           </div>

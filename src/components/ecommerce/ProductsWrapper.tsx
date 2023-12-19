@@ -10,18 +10,22 @@ const ProductsWrapper = ({ title, products, showed_products, button }: ProductsW
   const formatted_products = showed_products ? products.slice(products.length - showed_products, products.length) : products;
 
   return (
-    <section className="container mx-auto py-12 flex flex-col items-center justify-center">
+    <section className="container mx-auto py-12 flex flex-col items-center justify-center animate-fade-in">
       <div className="flex flex-col items-center">
         <h2 className="uppercase text-black text-2xl">{title}</h2>
         <Divider />
       </div>
-      <div className="flex flex-wrap gap-10 justify-around">
+      <div className="flex flex-wrap gap-10 justify-around  animation-fade-in">
         {
           formatted_products && formatted_products.map((product: Product) => (
-            <Link href={`/products/${product.slug}`} key={product.id} className="cursor-pointer w-[300px] h-[500px] flex flex-col justify-center items-center overflow-hidden relative">
+            <Link href={`/products/${product.slug}`} key={product.id} className="cursor-pointer w-[300px] h-[500px] flex flex-col justify-center items-center overflow-hidden relative group transition duration-500 hover:scale-110">
               <Image src={product.img} alt={product.title} className="object-contain" width={400} height={500}/>
-              <h2 className="text-stone-800 mt-6">{product.title}</h2>
-              <p className="text-stone-400">{priceFormatter(product.price)}</p>
+              <h2 className="text-stone-800 mt-6 relative">
+                <span className="capitalize">{product.title}</span>
+                <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-zinc-600 group-hover:w-1/2 group-hover:transition-all"></span>
+                <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-zinc-600 group-hover:w-1/2 group-hover:transition-all"></span>
+              </h2>
+              <p className="text-stone-400 mt-2">{priceFormatter(product.price)}</p>
             </Link>
           ))
         }
