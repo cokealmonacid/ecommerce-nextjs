@@ -10,10 +10,21 @@ import Button from "./Button";
 import ImageInput from "./ImageInput";
 import { responses } from "@/utils/language";
 import { toast } from "react-toastify";
+import ImageReveal from "./ImageReveal";
 
 const SliderForm = () => {
+  let image = "";
   const queryClient = useQueryClient();
   const { formState: { errors }, register, handleSubmit, resetField, getValues, watch } = useForm<ImageInputValues>();
+
+
+  if (watch("Image")) {
+    image = getValues("Image");
+  }
+
+  const handleReset = () => {
+    resetField("Image");
+  };
 
   const onSubmit: SubmitHandler<ImageInputValues> = values => {
     const data = new FormData();
@@ -41,7 +52,10 @@ const SliderForm = () => {
   return(
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
-        <ImageInput label="Image" register={register} resetField={resetField} getValues={getValues} watch={watch} required />
+        {
+         image && image.length ? <ImageReveal url={image} handleReset={handleReset}/> :
+          <ImageInput label="Image" required register={register} />
+        }
         { errors.Image && <p className="text-red-500 font-semibold text-xs">Debes agregar una imagen</p> }
       </div>
       <Button title="Agregar imagen" isDisabled={mutation.isPending} isLoading={mutation.isPending} />
