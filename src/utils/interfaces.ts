@@ -1,4 +1,4 @@
-import { FieldValues, Path, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormWatch } from "react-hook-form";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 /* eslint-disable no-unused-vars */
 export interface MenuProps {
@@ -141,16 +141,21 @@ export interface ProductFormInputs extends ImageInputValues {
 };
 
 export interface ImageInputProps<T extends FieldValues> {
+  img?: string;
   label: Path<T>;
   required: boolean;
-  getValues: UseFormGetValues<T>;
   register: UseFormRegister<T>;
-  resetField: UseFormResetField<T>
-  watch: UseFormWatch<T>;
 };
 
-export interface ProductFormProps extends NavbarProps {};
+export interface ProductFormProps extends NavbarProps {
+  product?: Product;
+};
 
 export interface CategoryFormProps {
   category?: Category
+};
+
+export interface ImageRevealProps<T extends FieldValues> {
+  url: string;
+  handleReset: () => void;
 };

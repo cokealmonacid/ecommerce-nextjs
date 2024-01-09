@@ -48,7 +48,7 @@ const Dashboard = () => {
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{product.title}</th>
                 <td className="px-6 py-4">{product.category.title}</td>
                 <td className="px-6 py-4">{priceFormatter(product.price)}</td>
-                <td className="px-6 py-4"><ToggleStatus status={product.active}/></td>
+                <td className="px-6 py-4"><ToggleStatus id={product.id} status={product.active}/></td>
                 <td className="px-6 py-4">
                   <Actions id={product.id.toString()} slug={product.slug} url="products/remove" queryKey={[queryKeys.GET_PRODUCTS]} view remove edit />
                 </td>

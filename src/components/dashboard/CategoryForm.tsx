@@ -43,7 +43,7 @@ const CategoryForm = ({ category }: CategoryFormProps) => {
     <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
         <label className="dashboard-label">Nombre</label>
-        <input className="dashboard-input"  {...register("title", { required: true })} placeholder={category && category.title ? category.title : ""}/>
+        <input className="dashboard-input"  {...register("title", { required: true })} defaultValue={category && category.title ? category.title : ""}/>
         { errors.title && <p className="text-red-500 font-semibold text-xs">Debes agregar un nombre</p> }
       </div>
       <Button title={category ? "Actualizar categoría" : "Crear categoría" } isDisabled={mutation.isPending} isLoading={mutation.isPending} />

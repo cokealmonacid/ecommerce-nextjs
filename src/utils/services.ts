@@ -24,6 +24,14 @@ export const putData = async (url: string, body: {[key: string] : string}) => {
   return res.json();
 };
 
+export const updateStatus = async (id: string) => {
+  const res = await fetch(`http://localhost:3000/api/products/status/${id}`, {
+    method: "PUT",
+  });
+
+  return res.json();
+};
+
 export const deleteData = async (url: string, id: string) => {
   const res = await fetch(`http://localhost:3000/api/${url}/${id}`, {
     method: "DELETE"
