@@ -19,7 +19,6 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
   const queryClient = useQueryClient();
   const [image, setImage] = useState(product ? product.img : null);
   const { handleSubmit, register, resetField, getValues, watch, formState: { errors } } = useForm<ProductFormInputs>();
-  // const image = product ? product.img : null;
 
   const mutation = useMutation({
     mutationFn: (data: FormData) => postFormData("products", data),
@@ -68,8 +67,8 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
       </div>
       <div className="mb-4">
         <label className="dashboard-label">Categoría</label>
-        <select className="dashboard-input" defaultValue={"DEFAULT"} {...register("category_id", { required: "Debes seleccionar una categoría" })}>
-          <option value="DEFAULT" disabled>Selecciona una categoría</option>
+        <select className="dashboard-input" defaultValue={product ? product.category_id : "DEFAULT"} {...register("category_id", { required: "Debes seleccionar una categoría" })}>
+          { !product && <option value="DEFAULT" disabled>Selecciona una categoría</option> }
           {
             categories.map((category) => <option key={category.id} value={category.id}>{category.title}</option>)
           }

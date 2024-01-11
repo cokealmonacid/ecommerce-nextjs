@@ -68,3 +68,40 @@ export const POST = async (req: NextRequest) => {
     return new NextResponse(JSON.stringify({ message: "NOT_AUTHENTICATED" }), { status: 401 });
   }
 };
+
+// UPDATE PRODUCT
+export const PUT = async (req: NextRequest) => {
+  const session = await getAuthSession();
+
+  if (session) {
+    try {
+      const data = await req.formData();
+      const file: File | null = data.get("file") as unknown as File;
+
+
+      console.log("FILEEEEE: ", file);
+
+      const product = {
+        id: data.get("title")?.toString() ?? "",
+        title: data.get("title")?.toString() ?? "",
+        category_id: data.get("category_id")?.toString() ?? "",
+        brand: data.get("brand")?.toString() ?? "",
+        price: Number(data.get("price")) ?? 0,
+        description: data.get("description")?.toString() ?? "",
+        slug: data.get("slug")?.toString() ?? "",
+      };
+
+      await prisma.product.update({
+        where: { id: product.id },
+        data: product
+      });
+
+      return new NextResponse(JSON.stringify({ message: "EDITED_SUCCESS_PRODUCT" }), { status: 202 });
+    } catch (err) {
+      console.log(err);
+      return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
+    }
+  } else {
+    return new NextResponse(JSON.stringify({ message: "NOT_AUTHENTICATED" }), { status: 401 });
+  }
+};
