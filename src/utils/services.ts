@@ -58,3 +58,17 @@ export const postFormData = async (url: string, data: FormData) => {
 
   return res.json();
 };
+
+export const putFormData = async (url: string, data: FormData) => {
+  const res = await fetch(`http://localhost:3000/api/${url}`, {
+    method: "PUT",
+    body: data
+  });
+
+  if (!res.ok) {
+    const { message } = await res.json();
+    throw new Error(message);
+  }
+
+  return res.json();
+};

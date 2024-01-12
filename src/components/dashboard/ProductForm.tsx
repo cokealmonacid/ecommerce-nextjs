@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 
 import { ProductFormInputs, ProductFormProps } from "@/utils/interfaces";
-import { postFormData } from "@/utils/services";
+import { postFormData, putFormData } from "@/utils/services";
 import { slugify } from "@/utils/helpers";
 import { responses } from "@/utils/language";
 import { queryKeys } from "@/utils/consts";
@@ -21,7 +21,7 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
   const { handleSubmit, register, resetField, getValues, watch, formState: { errors } } = useForm<ProductFormInputs>();
 
   const mutation = useMutation({
-    mutationFn: (data: FormData) => postFormData("products", data),
+    mutationFn: (data: FormData) => product ? putFormData("products", data) : postFormData("products", data),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: [queryKeys.GET_PRODUCTS] });
     }
@@ -38,13 +38,18 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
 
   const onSubmit: SubmitHandler<ProductFormInputs> = values => {
     const data = new FormData();
-    data.set("file", values.Image[0]);
+    data.set("file", values.Image ? values.Image[0] : "");
     data.set("title", values.title ?? "");
     data.set("category_id", values.category_id ?? "");
     data.set("brand", values.brand ?? "");
     data.set("price", String(values.price) ?? "");
     data.set("description", values.description ?? "");
     data.set("slug", slugify(values.title ?? ""));
+
+    if (product) {
+      data.set("id", String(product.id));
+    }
+
     mutation.mutate(data);
   };
 

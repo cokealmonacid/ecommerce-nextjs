@@ -82,7 +82,7 @@ export const PUT = async (req: NextRequest) => {
       console.log("FILEEEEE: ", file);
 
       const product = {
-        id: data.get("title")?.toString() ?? "",
+        id: data.get("id")?.toString() ?? "",
         title: data.get("title")?.toString() ?? "",
         category_id: data.get("category_id")?.toString() ?? "",
         brand: data.get("brand")?.toString() ?? "",
@@ -96,7 +96,7 @@ export const PUT = async (req: NextRequest) => {
         data: product
       });
 
-      return new NextResponse(JSON.stringify({ message: "EDITED_SUCCESS_PRODUCT" }), { status: 202 });
+      return new NextResponse(JSON.stringify({ message: "UPDATED_PRODUCT" }), { status: 202 });
     } catch (err) {
       console.log(err);
       return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
