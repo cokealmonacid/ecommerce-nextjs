@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 
 import { prisma } from "@/utils/connect";
 import { getAuthSession } from "@/utils/auth";
+import { uploadPhoto } from "@/utils/helpers";
 
 // FETCH ALL SLIDER IMAGES
 export const GET = async () => {
@@ -26,20 +27,10 @@ export const POST = async (req: NextRequest) => {
     }
 
     try {
-      data.append("upload_preset", process.env.CLOUDINARY_PRESET ?? "");
-      data.append("folder", process.env.CLOUDINARY_FOLDER ?? "");
-      const uploadResponse = await fetch(
-        `${process.env.CLOUDINARY_URL}/upload`,
-        {
-          method: "POST",
-          body: data,
-        }
-      );
-    
-      const uploadedImageData = await uploadResponse.json();
+      const uploadedImageUrl = await uploadPhoto(data);
       await prisma.imageSlider.create({
         data: {
-          image: uploadedImageData.url
+          image: uploadedImageUrl
         }
       });
     

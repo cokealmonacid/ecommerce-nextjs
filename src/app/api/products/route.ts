@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 
 import { prisma } from "@/utils/connect";
 import { getAuthSession } from "@/utils/auth";
-import { validateNonEmptyObject } from "@/utils/helpers";
+import { removePhoto, uploadPhoto, validateNonEmptyObject } from "@/utils/helpers";
 
 // FETCH PRODUCTS
 export const GET = async () => {
@@ -40,21 +40,11 @@ export const POST = async (req: NextRequest) => {
     }
     
     try {
-      data.append("upload_preset", process.env.CLOUDINARY_PRESET ?? "");
-      data.append("folder", process.env.CLOUDINARY_FOLDER ?? "");
-      const uploadResponse = await fetch(
-        `${process.env.CLOUDINARY_URL}/upload`,
-        {
-          method: "POST",
-          body: data,
-        }
-      );
-
-      const uploadedImageData = await uploadResponse.json();
+      const uploadedImageUrl = await uploadPhoto(data);
       await prisma.product.create({
         data: {
           ...product,
-          img: uploadedImageData.url
+          img: uploadedImageUrl
         }
       });
     
@@ -78,10 +68,7 @@ export const PUT = async (req: NextRequest) => {
       const data = await req.formData();
       const file: File | null = data.get("file") as unknown as File;
 
-
-      console.log("FILEEEEE: ", file);
-
-      const product = {
+      const productToUpdate = {
         id: data.get("id")?.toString() ?? "",
         title: data.get("title")?.toString() ?? "",
         category_id: data.get("category_id")?.toString() ?? "",
@@ -91,10 +78,27 @@ export const PUT = async (req: NextRequest) => {
         slug: data.get("slug")?.toString() ?? "",
       };
 
-      await prisma.product.update({
-        where: { id: product.id },
-        data: product
-      });
+      if (file) {
+        const product = await prisma.product.findFirstOrThrow({ where: { id: productToUpdate.id } });
+        const respCloudinary = await removePhoto(product.img);
+        if (respCloudinary.error || respCloudinary.result === "not found") {
+          throw new Error(respCloudinary.error.message);
+        }
+
+        const uploadedImageUrl = await uploadPhoto(data);
+        await prisma.product.update({
+          where: { id: productToUpdate.id },
+          data: {
+            ...productToUpdate, img: uploadedImageUrl
+          }
+        });
+
+      } else {
+        await prisma.product.update({
+          where: { id: productToUpdate.id },
+          data: productToUpdate
+        });
+      }
 
       return new NextResponse(JSON.stringify({ message: "UPDATED_PRODUCT" }), { status: 202 });
     } catch (err) {

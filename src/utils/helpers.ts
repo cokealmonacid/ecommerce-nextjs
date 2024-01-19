@@ -62,3 +62,41 @@ export function validateNonEmptyObject<T>(obj: NonEmptyObject<T>): boolean {
   }
   return true;
 };
+
+export const uploadPhoto = async (data: FormData) => {
+  data.append("upload_preset", process.env.CLOUDINARY_PRESET ?? "");
+  data.append("folder", process.env.CLOUDINARY_FOLDER ?? "");
+  const uploadResponse = await fetch(
+    `${process.env.CLOUDINARY_URL}/upload`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+
+  const uploadedImageData = await uploadResponse.json();
+  console.log("uploadedImageData: ", uploadedImageData);
+  return uploadedImageData.url;
+};
+
+export const removePhoto = async (photo: string) => {
+  const publicId = getPublicIdCloudinary(photo);
+  const signature = generateSHA1(generateSignature(publicId));
+  const timestamp = new Date().getTime();
+
+  const data = new FormData();
+  data.append("api_key", process.env.CLOUDINARY_API_KEY ?? "");
+  data.append("public_id", publicId);
+  data.append("signature", signature);
+  data.append("timestamp", timestamp.toString());
+
+  const deleteFromCloudinaryResponse = await fetch(
+    `${process.env.CLOUDINARY_URL}/destroy`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+
+  return await deleteFromCloudinaryResponse.json();
+};
