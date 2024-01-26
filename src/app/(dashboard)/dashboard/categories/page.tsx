@@ -19,7 +19,7 @@ const Categories = () => {
 
   if (isSuccess && !data.length) {
     return (
-      <Empty title="categorías" url="dashboard/categories" />
+      <Empty title="categorías" url="categories/add" />
     );
   }
 

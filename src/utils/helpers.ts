@@ -66,6 +66,7 @@ export function validateNonEmptyObject<T>(obj: NonEmptyObject<T>): boolean {
 export const uploadPhoto = async (data: FormData) => {
   data.append("upload_preset", process.env.CLOUDINARY_PRESET ?? "");
   data.append("folder", process.env.CLOUDINARY_FOLDER ?? "");
+  data.append("resource_type", "raw");
   const uploadResponse = await fetch(
     `${process.env.CLOUDINARY_URL}/upload`,
     {
@@ -75,28 +76,30 @@ export const uploadPhoto = async (data: FormData) => {
   );
 
   const uploadedImageData = await uploadResponse.json();
-  console.log("uploadedImageData: ", uploadedImageData);
+
   return uploadedImageData.url;
 };
 
 export const removePhoto = async (photo: string) => {
   const publicId = getPublicIdCloudinary(photo);
-  const signature = generateSHA1(generateSignature(publicId));
+  const signature = generateSHA1(generateSignature(`${process.env.CLOUDINARY_FOLDER ?? ""}/${publicId}`));
   const timestamp = new Date().getTime();
 
   const data = new FormData();
-  data.append("api_key", process.env.CLOUDINARY_API_KEY ?? "");
-  data.append("public_id", publicId);
-  data.append("signature", signature);
+  data.append("public_id", `${process.env.CLOUDINARY_FOLDER ?? ""}/${publicId}`);
   data.append("timestamp", timestamp.toString());
+  data.append("api_key", process.env.CLOUDINARY_API_KEY ?? "");
+  data.append("signature", signature);
 
   const deleteFromCloudinaryResponse = await fetch(
     `${process.env.CLOUDINARY_URL}/destroy`,
     {
       method: "POST",
-      body: data,
+      body: data
     }
   );
 
-  return await deleteFromCloudinaryResponse.json();
+  const res = await deleteFromCloudinaryResponse.json();
+
+  return res;
 };

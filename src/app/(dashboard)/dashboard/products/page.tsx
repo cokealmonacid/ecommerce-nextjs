@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   if (isSuccess && !data.length) {
     return (
-      <Empty title="productos" url="dashboard/products" />
+      <Empty title="productos" url="products/add" />
     );
   }
 

@@ -20,7 +20,7 @@ const Slider = () => {
 
   if (isSuccess && !data.length) {
     return (
-      <Empty title="imágenes" url="dashboard/slider" />
+      <Empty title="imágenes" url="slider/add" />
     );
   }
 
