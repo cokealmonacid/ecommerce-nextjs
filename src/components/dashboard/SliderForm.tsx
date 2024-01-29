@@ -50,7 +50,7 @@ const SliderForm = () => {
   }
 
   return(
-    <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="p-4 w-[300px] md:w-[500px]" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
         {
          image && image.length ? <ImageReveal url={image} handleReset={handleReset}/> :

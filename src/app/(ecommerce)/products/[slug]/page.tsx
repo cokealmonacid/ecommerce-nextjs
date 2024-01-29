@@ -38,13 +38,13 @@ const ProductDetail = async ({ params }: { params: {slug: string} }) => {
         </div>
       </div>
       {
-        relatedProducts.length && (
+        relatedProducts.length ? (
           <ProductsWrapper
             title={"productos relacionados"}
             products={filteredRelatedProducts}
-            showed_products={4}
+            showed_products={filteredRelatedProducts.length < 4 ? filteredRelatedProducts.length : 4}
           />
-        )
+        ) : null
       }
     </>
   );

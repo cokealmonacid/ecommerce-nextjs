@@ -11,7 +11,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-1/6 bg-[#0b0e18] shadow-lg">
+    <div className="w-0 md:w-1/6 bg-[#0b0e18] shadow-lg">
       <header className="flex justify-center items-center py-6 bg-[#223463]">
         <Link href="/"><Image src="/logo.png" alt="Delakalle Skateshop" width={80} height={80} priority /></Link>
       </header>
@@ -19,8 +19,8 @@ const Sidebar = () => {
         {
           dashboardRouter.map((route: RoutesProps) => (
             <Link href={route.url} key={route.title}>
-              <div className="py-4 px-8">
-                <h1 className={`text-xl text-white ${pathname.includes(route.url) ? "font-bold" : "font-thin"}`}>{route.title}</h1>
+              <div className="py-4 px-2 lg:px-8">
+                <h1 className={`text-md lg:text-xl text-white ${pathname.includes(route.url) ? "font-bold" : "font-thin"}`}>{route.title}</h1>
               </div>
             </Link>
           ))

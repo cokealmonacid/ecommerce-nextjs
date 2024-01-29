@@ -64,7 +64,7 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
   }
 
   return (
-    <form className="p-4 w-[500px]" onSubmit={handleSubmit(onSubmit)}>
+    <form className="p-4 w-[300px] md:w-[500px]" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
         <label className="dashboard-label">Título</label>
         <input className="dashboard-input"  {...register("title", { required: "Debes agregar un título" })} defaultValue={product && product.title ? product.title : ""}/>

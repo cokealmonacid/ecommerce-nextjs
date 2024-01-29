@@ -9,6 +9,7 @@ import { useCartStore } from "@/utils/store";
 import MenuMobile from "./MenuMobile";
 import Menu from "./Menu";
 import { Burger, Instagram, ShoppingCart } from "@/utils/icons";
+import { useOutsideClick } from "@/utils/customHooks";
 
 const Navbar = ({ categories }: NavbarProps) => {
   const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false });
@@ -18,6 +19,15 @@ const Navbar = ({ categories }: NavbarProps) => {
     setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] });
   };
 
+  const ref = useOutsideClick(() => {
+    if (menuVisibility.desktop) {
+      handleMenuVisibility("desktop");
+    }
+
+    if (menuVisibility.mobile) {
+      handleMenuVisibility("mobile");
+    }
+  });
 
   return (
     <>
@@ -43,8 +53,10 @@ const Navbar = ({ categories }: NavbarProps) => {
           </div>
         </div>
       </div>
-      {menuVisibility.desktop && <Menu categories={categories} handleMenu={handleMenuVisibility}  />}
-      {menuVisibility.mobile && <MenuMobile categories={categories}  handleMenu={handleMenuVisibility} />}
+      <div ref={ref}>
+        {menuVisibility.desktop && <Menu categories={categories} handleMenu={handleMenuVisibility}  />}
+        {menuVisibility.mobile && <MenuMobile categories={categories}  handleMenu={handleMenuVisibility} />}
+      </div>
     </>
   );
 };
