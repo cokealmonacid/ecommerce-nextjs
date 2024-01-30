@@ -36,7 +36,6 @@ const ToggleStatus = ({ status, id }: Props) => {
   }
 
   if (mutation.isSuccess) {
-    console.log("isSuccess: ", mutation.isSuccess, mutation.data.message);
     toast.success(responses[mutation.data.message]);
     mutation.reset();
   }

@@ -8,7 +8,7 @@ import Divider from "./Divider";
 
 const ProductsWrapper = ({ title, products, showed_products, button }: ProductsWrapperProps) => {
   const formatted_products = showed_products ? products.slice(0, showed_products) : products;
-  console.log("formatted_products: ", formatted_products);
+
   return (
     <section className="container mx-auto py-12 flex flex-col items-center justify-center animate-fade-in">
       <div className="flex flex-col items-center">

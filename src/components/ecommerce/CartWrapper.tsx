@@ -2,7 +2,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 import { CartItem, CartWrapperProps } from "@/utils/interfaces";
-import { priceFormatter } from "@/utils/helpers";
+import { encodeMessageToWsp, priceFormatter } from "@/utils/helpers";
 import { useCartStore } from "@/utils/store";
 import CounterCart from "./CounterCart";
 import Divider from "./Divider";
@@ -15,6 +15,12 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
   const handleDeleteFromCartClick = (product: CartItem) => {
     deleteFromCart(product);
     toast.warning("Producto removido del carro");
+  };
+
+  const handleClickOnConfirmation = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    const message = encodeMessageToWsp(products, totalPrice);
+    window.location.href=`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
   };
 
   return (
@@ -62,7 +68,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
           <h2 className="text-2xl text-black font-bold">{priceFormatter(totalPrice)}</h2>
         </div>
         <div className="w-full flex justify-center md:justify-end">
-          <button className="button w-full md:w-[250px]">Realizar pedido</button>
+          <button className="button w-full md:w-[250px]" onClick={(e) => handleClickOnConfirmation(e)}>Realizar pedido</button>
         </div>
       </div>
     </section>

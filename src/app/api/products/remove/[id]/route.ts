@@ -20,7 +20,6 @@ export const DELETE = async (req: NextRequest, { params }: { params: { id: strin
 
       return new NextResponse(JSON.stringify({ message: "DELETED_RESOURCE" }), { status: 200 });
     } catch (err) {
-      console.log("ERROR: ", err);
       return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
     }
   } else {

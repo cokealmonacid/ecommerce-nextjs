@@ -1,6 +1,8 @@
 import crypto from "crypto";
 
 import { User } from "@prisma/client";
+import { CartItem } from "./interfaces";
+import { responses } from "./language";
 
 const formatter = new Intl.NumberFormat("es-CL", {
   style: "currency",
@@ -102,4 +104,12 @@ export const removePhoto = async (photo: string) => {
   const res = await deleteFromCloudinaryResponse.json();
 
   return res;
+};
+
+export const encodeMessageToWsp = (products: CartItem[], totalPrice: number) => {
+  const arrM = products.map((product: CartItem) => {
+    return `\n${product.title} (x${product.quantity})   $${priceFormatter(product.price * product.quantity)}`;
+  });
+
+  return responses["MESSAGE_TITLE"] + arrM.join(" ") + `\nTotal:         ${priceFormatter(totalPrice)}`;
 };

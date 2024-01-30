@@ -47,7 +47,6 @@ export const PUT = async (req: NextRequest) => {
 
       return new NextResponse(JSON.stringify({ message: "EDITED_SUCCESS_CATEGORY" }), { status: 202 });
     } catch (err) {
-      console.log(err);
       return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
     }
   } else {

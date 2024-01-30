@@ -13,4 +13,5 @@ export const responses: {[key: string]: string} = {
   "REMOVE_PRODUCTS_BEFORE_DELETE": "Categoría con uno o más productos asociados, debes eliminarlos antes.",
   "EDITED_SUCCESS_CATEGORY": "La categoría ha sido actualizada!",
   "UPDATED_PRODUCT": "El producto ha sido actualizado!",
+  "MESSAGE_TITLE": "Hola! me gustaría comprar estos productos:",
 };

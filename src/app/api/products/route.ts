@@ -51,7 +51,6 @@ export const POST = async (req: NextRequest) => {
       return new NextResponse(JSON.stringify({ message: "CREATED_SUCCESS_PRODUCT" }), { status: 201 });
 
     } catch (err) {
-      console.log("err: ", err);
       return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
     }
   } else {
@@ -102,7 +101,6 @@ export const PUT = async (req: NextRequest) => {
 
       return new NextResponse(JSON.stringify({ message: "UPDATED_PRODUCT" }), { status: 202 });
     } catch (err) {
-      console.log(err);
       return new NextResponse(JSON.stringify({ message: "SOMETHING_WENT_WRONG" }), { status: 500 });
     }
   } else {
