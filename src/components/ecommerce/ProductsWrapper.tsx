@@ -7,7 +7,8 @@ import Divider from "./Divider";
 
 
 const ProductsWrapper = ({ title, products, showed_products, button }: ProductsWrapperProps) => {
-  const formatted_products = showed_products ? products.slice(0, showed_products) : products;
+  const isArray = Array.isArray(products);
+  const formatted_products = showed_products && isArray ? products.slice(0, showed_products) : products;
 
   return (
     <section className="container mx-auto py-12 flex flex-col items-center justify-center animate-fade-in">
@@ -17,7 +18,7 @@ const ProductsWrapper = ({ title, products, showed_products, button }: ProductsW
       </div>
       <div className="flex flex-wrap gap-10 justify-around  animation-fade-in">
         {
-          formatted_products && formatted_products.map((product: Product) => (
+          isArray && formatted_products && formatted_products.map((product: Product) => (
             <Link href={`/products/${product.slug}`} key={product.id} className="cursor-pointer w-[300px] h-[500px] flex flex-col justify-center items-center overflow-hidden relative group transition duration-500 hover:scale-110">
               <Image src={product.img} alt={product.title} className="object-contain" width={400} height={500}/>
               <h2 className="text-stone-800 mt-6 relative">

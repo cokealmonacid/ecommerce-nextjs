@@ -54,10 +54,6 @@ const MenuMobile = ({ categories, handleMenu }: MenuProps) => {
             }
             <div className="h-[1px] bg-stone-300 mt-4"></div>
           </div>
-          <div className="pt-4" onClick={() => handleClick("/contact")}>
-            <h1 className="text-lg">CONTACTO</h1>
-            <div className="h-[1px] bg-stone-300 mt-4"></div>
-          </div>
       </div>
     </div>
   );

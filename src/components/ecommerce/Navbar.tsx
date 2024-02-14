@@ -36,7 +36,6 @@ const Navbar = ({ categories }: NavbarProps) => {
           <div className="hidden md:flex flex-row gap-10 lg:gap-20 flex-1">
             <Link href="/"><h1>Home</h1></Link>
             <div className="cursor-pointer" onClick={() => handleMenuVisibility("desktop")}><h1>Productos</h1></div>
-            <Link href="/contact"><h1>Contacto</h1></Link>
           </div>
           <div className="md:hidden flex-1" onClick={() => handleMenuVisibility("mobile")}><Burger /></div>
           <Link href="/">
