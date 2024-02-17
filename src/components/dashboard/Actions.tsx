@@ -2,23 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import { deleteData } from "@/utils/services";
 import { responses } from "@/utils/language";
 import { Edit, Remove, View } from "@/utils/icons";
 import LoadingDots from "../ecommerce/LoadingDots";
-
-interface ActionsProps {
-  url?: string;
-  edit?: boolean;
-  remove?: boolean;
-  view?: boolean;
-  queryKey?: QueryKey;
-  id?: string;
-  slug?: string;
-}
+import { ActionsProps } from "@/utils/interfaces";
 
 const Actions = ({ edit, remove, view , id = "", url = "", slug = "", queryKey }: ActionsProps) => {
   const pathname = usePathname();

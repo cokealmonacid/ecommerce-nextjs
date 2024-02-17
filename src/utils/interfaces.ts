@@ -1,3 +1,4 @@
+import { QueryKey } from "@tanstack/react-query";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 /* eslint-disable no-unused-vars */
@@ -159,3 +160,13 @@ export interface ImageRevealProps<T extends FieldValues> {
   url: string;
   handleReset: () => void;
 };
+
+export interface ActionsProps {
+  url?: string;
+  edit?: boolean;
+  remove?: boolean;
+  view?: boolean;
+  queryKey?: QueryKey;
+  id?: string;
+  slug?: string;
+}
