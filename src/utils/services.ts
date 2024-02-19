@@ -1,5 +1,5 @@
 export const getData = async (url: string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${url}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/${url}`, {
     cache: "no-cache"
   });
 
@@ -7,7 +7,7 @@ export const getData = async (url: string) => {
 };
 
 export const postData = async (url: string, body: {[key: string] : string}) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${url}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/${url}`, {
     method: "POST",
     body: JSON.stringify(body)
   });
@@ -16,7 +16,7 @@ export const postData = async (url: string, body: {[key: string] : string}) => {
 };
 
 export const putData = async (url: string, body: {[key: string] : string}) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${url}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/${url}`, {
     method: "PUT",
     body: JSON.stringify(body)
   });
@@ -25,7 +25,7 @@ export const putData = async (url: string, body: {[key: string] : string}) => {
 };
 
 export const updateStatus = async (id: string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/status/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/products/status/${id}`, {
     method: "PUT",
   });
 
@@ -33,7 +33,7 @@ export const updateStatus = async (id: string) => {
 };
 
 export const deleteData = async (url: string, id: string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${url}/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/${url}/${id}`, {
     method: "DELETE"
   });
 
@@ -46,7 +46,7 @@ export const deleteData = async (url: string, id: string) => {
 };
 
 export const postFormData = async (url: string, data: FormData) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${url}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/${url}`, {
     method: "POST",
     body: data
   });
@@ -60,7 +60,7 @@ export const postFormData = async (url: string, data: FormData) => {
 };
 
 export const putFormData = async (url: string, data: FormData) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${url}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/${url}`, {
     method: "PUT",
     body: data
   });
