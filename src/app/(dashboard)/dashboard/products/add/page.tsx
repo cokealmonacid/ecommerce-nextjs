@@ -2,6 +2,8 @@ import ProductForm from "@/components/dashboard/ProductForm";
 import { Category } from "@/utils/interfaces";
 import { getData } from "@/utils/services";
 
+export const dynamic = "force-dynamic";
+
 const Add = async () => {
   const categories: Category[] = await getData("categories");
   

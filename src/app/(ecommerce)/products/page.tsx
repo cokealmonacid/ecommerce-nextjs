@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
+export const dynamic = "force-dynamic";
+
 const Products = async () => {
   const products: Product[] = await getData("products");
 

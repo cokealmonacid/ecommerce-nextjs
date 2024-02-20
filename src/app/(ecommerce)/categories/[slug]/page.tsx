@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
+export const dynamic = "force-dynamic";
+
 const Categories = async ({ params }: { params: {slug: string} }) => {
   const categories: Category[] = await getData("categories");
   const category = categories.filter((category: Category) => category.slug === params.slug )[0];

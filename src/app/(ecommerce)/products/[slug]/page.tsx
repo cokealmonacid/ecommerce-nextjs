@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
+export const dynamic = "force-dynamic";
+
 const ProductDetail = async ({ params }: { params: {slug: string} }) => {
   const { slug } = params;
   const products = await getData(`products/${slug}`);

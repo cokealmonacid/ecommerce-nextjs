@@ -3,6 +3,8 @@ import Slider from "@/components/ecommerce/Slider";
 import { Product, SliderImages } from "@/utils/interfaces";
 import { getData } from "@/utils/services";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const imagesSlider: SliderImages[] = await getData("slider");
   const products: Product[] = await getData("products/latest");
