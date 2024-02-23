@@ -10,7 +10,7 @@ const AddToCartButton = ({ product }: AddToCartButtonProps) => {
 
   const handleAddToCartClick = () => {
     addToCart({
-      id: product.id,
+      id: Number(product.id),
       title: product.title,
       img: product.img,
       category_id: product.category_id,
