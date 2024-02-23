@@ -1,12 +1,11 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 
-import { Product } from "@/utils/interfaces";
 import { priceFormatter } from "@/utils/helpers";
 import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import AddToCartButton from "@/components/ecommerce/AddToCartButton";
 import Divider from "@/components/ecommerce/Divider";
-import { prisma } from "@/utils/connect";
+import { getProductBySlug, getRelatedProducts } from "@/models/product";
 
 export const metadata: Metadata = {
   title: "Productos | Delakalle Skateshop 🛹",
@@ -14,19 +13,8 @@ export const metadata: Metadata = {
 };
 
 const ProductDetail = async ({ params }: { params: {slug: string} }) => {
-  const { slug } = params;
-
-  const products = await prisma.product.findMany({ where: { slug }});
-  const productSelected = products.filter((product: Product) => product.slug === params.slug )[0];
-  const relatedProducts = await prisma.product.findMany({
-    orderBy: { createdAt: "desc" },
-    where: { 
-      ...(productSelected.category_id && { category_id: productSelected.category_id }),
-      active: true,        
-     }
-  });
-
-  const filteredRelatedProducts = relatedProducts.filter((product: Product) => product.id !== productSelected.id);
+  const productSelected = await getProductBySlug(params.slug);
+  const relatedProducts = await getRelatedProducts(productSelected);
 
   return (
     <>
@@ -49,8 +37,8 @@ const ProductDetail = async ({ params }: { params: {slug: string} }) => {
         relatedProducts.length ? (
           <ProductsWrapper
             title={"productos relacionados"}
-            products={filteredRelatedProducts}
-            showed_products={filteredRelatedProducts.length < 4 ? filteredRelatedProducts.length : 4}
+            products={relatedProducts}
+            showed_products={relatedProducts.length < 4 ? relatedProducts.length : 4}
           />
         ) : null
       }

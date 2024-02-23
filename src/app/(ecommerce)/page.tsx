@@ -1,14 +1,11 @@
 import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import Slider from "@/components/ecommerce/Slider";
-import { prisma } from "@/utils/connect";
-import { Product, SliderImages } from "@/utils/interfaces";
+import { getAllSliders } from "@/models/imageSlider";
+import { getLastProducts } from "@/models/product";
 
 export default async function Home() {
-  const imagesSlider: SliderImages[] = await prisma.imageSlider.findMany();
-  const products: Product[] = await prisma.product.findMany({
-    orderBy: { createdAt: "asc" },
-    where: { active: true }
-  });
+  const imagesSlider = await getAllSliders();
+  const products = await getLastProducts();
 
   return (
     <main>

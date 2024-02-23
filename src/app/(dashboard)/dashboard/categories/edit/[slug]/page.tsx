@@ -1,10 +1,8 @@
 import CategoryForm from "@/components/dashboard/CategoryForm";
-import { prisma } from "@/utils/connect";
-import { Category } from "@/utils/interfaces";
+import { getCategoryBySlug } from "@/models/category";
 
 const EditCategoryPage = async ({ params }: { params: {slug: string} }) => {
-  const categories: Category[] = await prisma.category.findMany();
-  const category = categories.filter((category: Category) => category.slug === params.slug )[0];
+  const category = await getCategoryBySlug(params.slug);
 
   return (
     <div className="p-4 h-[800px] overflow-scroll flex flex-col justify-center items-center">
