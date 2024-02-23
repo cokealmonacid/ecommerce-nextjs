@@ -2,17 +2,15 @@ import type { Metadata } from "next";
 
 import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import { Product } from "@/utils/interfaces";
-import { getData } from "@/utils/services";
+import { prisma } from "@/utils/connect";
 
 export const metadata: Metadata = {
   title: "Productos | Delakalle Skateshop 🛹",
   description: "Delakalle Skateshop 🛹",
 };
 
-export const dynamic = "force-dynamic";
-
 const Products = async () => {
-  const products: Product[] = await getData("products");
+  const products: Product[] = await prisma.product.findMany();
 
   return (
     <ProductsWrapper

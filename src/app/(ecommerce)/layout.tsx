@@ -9,9 +9,9 @@ import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/ecommerce/Navbar";
 import Footer from "@/components/ecommerce/Footer";
 import { Category } from "@/utils/interfaces";
-import { getData } from "@/utils/services";
 import AuthProvider from "@/providers/AuthProvider";
 import NavbarLogged from "@/components/dashboard/NavbarLogged";
+import { prisma } from "@/utils/connect";
 
 const courier = Courier_Prime({
   weight: ["400", "700"],
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const categories: Category[] = await getData("categories");
+  const categories: Category[] = await prisma.category.findMany();
 
   return (
     <html lang="es">

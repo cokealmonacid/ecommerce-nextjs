@@ -9,7 +9,6 @@ export const GET = async () => {
     const categories = await prisma.category.findMany({ include: { _count: { select: { products: true } } } });
     return new NextResponse(JSON.stringify(categories), { status: 200 });
   } catch (err) {
-    console.log("error: ", err);
     return new NextResponse(JSON.stringify({ message: "Something went wrong!" }), { status: 500 });
   }
 };

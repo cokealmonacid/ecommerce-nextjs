@@ -2,24 +2,30 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 import { Product } from "@/utils/interfaces";
-import { getData } from "@/utils/services";
 import { priceFormatter } from "@/utils/helpers";
 import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import AddToCartButton from "@/components/ecommerce/AddToCartButton";
 import Divider from "@/components/ecommerce/Divider";
+import { prisma } from "@/utils/connect";
 
 export const metadata: Metadata = {
   title: "Productos | Delakalle Skateshop 🛹",
   description: "Delakalle Skateshop 🛹",
 };
 
-export const dynamic = "force-dynamic";
-
 const ProductDetail = async ({ params }: { params: {slug: string} }) => {
   const { slug } = params;
-  const products = await getData(`products/${slug}`);
+
+  const products = await prisma.product.findMany({ where: { slug }});
   const productSelected = products.filter((product: Product) => product.slug === params.slug )[0];
-  const relatedProducts = await getData(`categories/related?cid=${productSelected.category_id}`);
+  const relatedProducts = await prisma.product.findMany({
+    orderBy: { createdAt: "desc" },
+    where: { 
+      ...(productSelected.category_id && { category_id: productSelected.category_id }),
+      active: true,        
+     }
+  });
+
   const filteredRelatedProducts = relatedProducts.filter((product: Product) => product.id !== productSelected.id);
 
   return (

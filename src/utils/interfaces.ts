@@ -14,7 +14,7 @@ export interface Category {
 }
 
 export interface Product {
-  id: number;
+  id: number | string;
   title: string;
   description: string;
   img: string;
