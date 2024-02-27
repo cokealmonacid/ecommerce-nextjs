@@ -101,6 +101,7 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
          image && image.length ? <ImageReveal url={image} handleReset={handleReset}/> :
           <ImageInput label="Image" required register={register} />
         }
+        <small className="text-gray-600">Para mejores resultados, subir imágenes de 640x640 pixeles.</small>
         { errors.Image && <p className="text-red-500 font-semibold text-xs">{errors.Image.message}</p> }
       </div>
       <Button title="Agregar producto" isDisabled={mutation.isPending} isLoading={mutation.isPending} />

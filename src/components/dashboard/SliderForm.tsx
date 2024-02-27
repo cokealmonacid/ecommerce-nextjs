@@ -56,6 +56,7 @@ const SliderForm = () => {
          image && image.length ? <ImageReveal url={image} handleReset={handleReset}/> :
           <ImageInput label="Image" required register={register} />
         }
+        <small className="text-gray-600">Para mejores resultados, subir imágenes de 1200x650 pixeles.</small>
         { errors.Image && <p className="text-red-500 font-semibold text-xs">Debes agregar una imagen</p> }
       </div>
       <Button title="Agregar imagen" isDisabled={mutation.isPending} isLoading={mutation.isPending} />
