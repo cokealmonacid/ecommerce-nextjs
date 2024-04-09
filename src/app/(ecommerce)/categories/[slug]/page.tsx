@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
+export const revalidate = 0;
+
 const Categories = async ({ params }: { params: {slug: string} }) => {
   const category = await getCategoryBySlug(params.slug);
   /* REFACTOR THIS */

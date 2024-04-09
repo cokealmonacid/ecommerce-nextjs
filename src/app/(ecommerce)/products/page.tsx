@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
+export const revalidate = 0;
+
 const Products = async () => {
   const products = await getAllProducts();
 

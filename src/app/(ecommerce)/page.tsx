@@ -3,6 +3,8 @@ import Slider from "@/components/ecommerce/Slider";
 import { getAllSliders } from "@/models/imageSlider";
 import { getLastProducts } from "@/models/product";
 
+export const revalidate = 0;
+
 export default async function Home() {
   const imagesSlider = await getAllSliders();
   const products = await getLastProducts();
