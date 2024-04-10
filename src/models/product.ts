@@ -1,18 +1,16 @@
-import { cache } from "react";
-
 import { prisma } from "@/utils/connect";
 import { Product } from "@/utils/interfaces";
 
-export const getAllProducts = cache(async () => await prisma.product.findMany());
+export const getAllProducts = async () => await prisma.product.findMany();
 
-export const getProductBySlug = cache(async (slug: string) => {
+export const getProductBySlug = async (slug: string) => {
   const products = await prisma.product.findMany({ where: { slug }});
   const productSelected = products.filter((product) => product.slug === slug )[0];
 
   return productSelected;
-});
+};
 
-export const getRelatedProducts = cache(async (productSelected: Product) => {
+export const getRelatedProducts = async (productSelected: Product) => {
   const relatedProducts = await prisma.product.findMany({
     orderBy: { createdAt: "desc" },
     where: { 
@@ -23,14 +21,13 @@ export const getRelatedProducts = cache(async (productSelected: Product) => {
   });
 
   return relatedProducts;
-});
+};
 
-export const getLastProducts = cache(async () => {
+export const getLastProducts = async () => {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: "asc" },
     where: { active: true }
   });  
 
   return products;
-});
-
+};
