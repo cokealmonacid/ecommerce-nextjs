@@ -13,7 +13,7 @@ const Menu = ({ categories, handleMenu }: MenuProps) => {
 
   return (
     <div className="w-full bg-gray-950 py-6 absolute z-10">
-      <div className="container mx-auto flex items-center justify-between px-4">
+      <div className="container mx-auto flex items-center gap-6 px-4">
         <div onClick={() => handleClick("desktop", "/products")}><h2 className="text-white uppercase cursor-pointer">Ver todos</h2></div>
         {
           categories.map((category: Category) => (

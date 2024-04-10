@@ -10,7 +10,7 @@ import Navbar from "@/components/ecommerce/Navbar";
 import Footer from "@/components/ecommerce/Footer";
 import AuthProvider from "@/providers/AuthProvider";
 import NavbarLogged from "@/components/dashboard/NavbarLogged";
-import { getAllCategories } from "@/models/category";
+import { getAllCategoriesWithProducts } from "@/models/category";
 
 const courier = Courier_Prime({
   weight: ["400", "700"],
@@ -27,7 +27,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const categories = await getAllCategories();
+  const categories = await getAllCategoriesWithProducts();
 
   return (
     <html lang="es">
