@@ -12,8 +12,6 @@ export const metadata: Metadata = {
   description: "Delakalle Skateshop 🛹",
 };
 
-export const revalidate = 0;
-
 const ProductDetail = async ({ params }: { params: {slug: string} }) => {
   const productSelected = await getProductBySlug(params.slug);
   const relatedProducts = await getRelatedProducts(productSelected);
