@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { Product } from "@/utils/interfaces";
 import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
-import { getData } from "@/utils/services";
 import { getCategoryBySlug } from "@/models/category";
 import { getAllProducts } from "@/models/product";
 
