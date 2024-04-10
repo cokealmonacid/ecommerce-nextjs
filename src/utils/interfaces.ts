@@ -14,7 +14,7 @@ export interface Category {
 }
 
 export interface Product {
-  id: number | string;
+  id: string;
   title: string;
   description: string;
   img: string;
@@ -43,7 +43,7 @@ export interface CartWrapperProps {
 }
 
 export interface CartItem {
-  id: number;
+  id: string;
   title: string;
   img: string;
   category_id: string;
