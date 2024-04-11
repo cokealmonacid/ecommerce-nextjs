@@ -47,7 +47,7 @@ const Navbar = ({ categories }: NavbarProps) => {
             <Link href="/cart" className="relative p-4">
               <ShoppingCart />
               {
-                totalCartItems  && totalCartItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center py-1 px-2 top-1 right-1">{totalCartItems}</span>
+                totalCartItems  && totalCartItems > 0 ? <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center py-1 px-2 top-1 right-1">{totalCartItems}</span> : null
               }
             </Link>
           </div>
