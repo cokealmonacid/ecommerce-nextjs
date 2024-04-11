@@ -72,6 +72,6 @@ export const useCartStore = create(persist<Cart & Actions>((set, get) => ({
       totalPrice: state.totalPrice - item.price
     }));
   }
-}), { name: "cart", skipHydration: true }));
+}), { name: "cart" }));
 
 

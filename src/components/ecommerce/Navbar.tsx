@@ -9,11 +9,12 @@ import { useCartStore } from "@/utils/store";
 import MenuMobile from "./MenuMobile";
 import Menu from "./Menu";
 import { Burger, Instagram, ShoppingCart } from "@/utils/icons";
-import { useOutsideClick } from "@/utils/customHooks";
+import useFromStore, { useOutsideClick } from "@/utils/customHooks";
 
 const Navbar = ({ categories }: NavbarProps) => {
   const [menuVisibility, setMenuVisibility] = useState({ desktop: false, mobile: false });
-  const { totalItems } = useCartStore();
+  const totalCartItems = useFromStore(useCartStore, state => state.totalItems);
+  
 
   const handleMenuVisibility = (opt: string) => {
     setMenuVisibility({ ...menuVisibility, [opt]: !menuVisibility[opt as keyof typeof menuVisibility] });
@@ -46,7 +47,7 @@ const Navbar = ({ categories }: NavbarProps) => {
             <Link href="/cart" className="relative p-4">
               <ShoppingCart />
               {
-                totalItems > 0 && <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center py-1 px-2 top-1 right-1">{totalItems}</span>
+                totalCartItems && <span className="absolute bg-red-500 text-white font-bold rounded-full text-xs flex justify-center items-center py-1 px-2 top-1 right-1">{totalCartItems}</span>
               }
             </Link>
           </div>

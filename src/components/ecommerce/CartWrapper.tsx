@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 import { CartItem, CartWrapperProps } from "@/utils/interfaces";
 import { encodeMessageToWsp, priceFormatter } from "@/utils/helpers";
+import useFromStore from "@/utils/customHooks";
 import { useCartStore } from "@/utils/store";
 import CounterCart from "./CounterCart";
 import Divider from "./Divider";
@@ -10,7 +11,8 @@ import { Remove } from "@/utils/icons";
 
 
 const CartWrapper = ({ products }: CartWrapperProps) => {
-  const { deleteFromCart, totalPrice } = useCartStore();
+  const { deleteFromCart } = useCartStore();
+  const totalPrice = useFromStore(useCartStore, state => state.totalPrice) ?? 0;
 
   const handleDeleteFromCartClick = (product: CartItem) => {
     deleteFromCart(product);

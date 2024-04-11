@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useRef, useEffect } from "react";
 
 export const useOutsideClick = (callback: () => void) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,3 +20,18 @@ export const useOutsideClick = (callback: () => void) => {
 
   return ref;
 };
+
+export default function useFromStore<T, F>(
+ store: (callback: (state: T) => unknown) => unknown,
+ storeCallback: (state: T) => F
+) {
+    const [state, setState] = useState<F>();
+
+    const stateOfStore = store(storeCallback) as F;
+
+    useEffect(() => {
+     setState(stateOfStore);
+    }, [stateOfStore]);
+
+   return state;
+}
