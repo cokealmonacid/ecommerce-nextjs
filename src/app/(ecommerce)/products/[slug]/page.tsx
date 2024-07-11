@@ -20,7 +20,9 @@ const ProductDetail = async ({ params }: { params: {slug: string} }) => {
     <>
       <div className="w-11/12 mx-auto py-20">
         <div className="flex flex-wrap gap-10">
-          <Image className="flex-1" src={productSelected.img} alt={productSelected.title} width={300} height={300} />
+          <div className="flex mx-auto md:flex-1 max-h-500 justify-center items-center">
+            <Image src={productSelected.img} alt={productSelected.title} width={300} height={300} />
+          </div>
           <div className="flex flex-1 flex-col justify-around">
             <div className="flex flex-col justify-center md:justify-start">
               <h1 className="text-stone-400 mb-4">{productSelected.brand}</h1>
