@@ -8,7 +8,7 @@ import { NavbarProps } from "@/utils/interfaces";
 import { useCartStore } from "@/utils/store";
 import MenuMobile from "./MenuMobile";
 import Menu from "./Menu";
-import { Burger, Instagram, ShoppingCart } from "@/utils/icons";
+import { Burger, Instagram, ShoppingCart, Youtube } from "@/utils/icons";
 import useFromStore, { useOutsideClick } from "@/utils/customHooks";
 
 const Navbar = ({ categories }: NavbarProps) => {
@@ -42,8 +42,9 @@ const Navbar = ({ categories }: NavbarProps) => {
           <Link href="/">
             <Image src="/logo.png" alt="Delakalle Skateshop" width={80} height={80} />
           </Link>
-          <div className="flex flex-row gap-8 flex-1 justify-end">
+          <div className="flex flex-row gap-4 flex-1 justify-end items-center">
             <a className="p-4" href="https://www.instagram.com/delakalleskateshop/"><Instagram /></a>
+            <a href="https://youtube.com/@delakalleskateshop8866?si=tbcwQ9Wlbtztx4Fr"><Youtube /></a>
             <Link href="/cart" className="relative p-4">
               <ShoppingCart />
               {
