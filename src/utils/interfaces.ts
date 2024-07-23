@@ -1,5 +1,5 @@
 import { QueryKey } from "@tanstack/react-query";
-import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { Control, FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 /* eslint-disable no-unused-vars */
 export interface MenuProps {

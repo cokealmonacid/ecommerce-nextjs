@@ -41,3 +41,20 @@
     @apply bg-white;
   }
 }
+
+.dashboard-editor {
+  @apply appearance-none;
+  @apply block;
+  @apply w-full;
+  @apply bg-gray-200;
+  @apply text-gray-700;
+  @apply border;
+  @apply rounded;
+  @apply mb-1;
+  @apply leading-tight;
+
+  &:focus {
+    @apply outline-none;
+    @apply bg-white;
+  }
+}

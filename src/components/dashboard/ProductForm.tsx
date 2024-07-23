@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Editor from "react-simple-wysiwyg";
 import { toast } from "react-toastify";
 
 
@@ -18,7 +19,7 @@ import ImageReveal from "./ImageReveal";
 const ProductForm = ({ categories, product }: ProductFormProps) => {
   const queryClient = useQueryClient();
   const [image, setImage] = useState(product ? product.img : null);
-  const { handleSubmit, register, resetField, getValues, watch, formState: { errors } } = useForm<ProductFormInputs>();
+  const { control, handleSubmit, register, resetField, getValues, watch, formState: { errors } } = useForm<ProductFormInputs>();
 
   const mutation = useMutation({
     mutationFn: (data: FormData) => product ? putFormData("products", data) : postFormData("products", data),
@@ -92,7 +93,13 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
       </div>
       <div className="mb-4">
         <label className="dashboard-label">Descripción</label>
-        <textarea className="dashboard-input" rows={5} {...register("description", { required: "Debes agregar una descripción" })} defaultValue={product && product.description ? product.description : ""}/>
+        <Controller
+          control={control}
+          name="description"
+          rules={{ required: "Debes agregar una descripción" }}
+          defaultValue={product && product.description ? product.description : ""}
+          render={({ field }) => <Editor {...field}  />}
+        />
         { errors.description && <p className="text-red-500 font-semibold text-xs">{errors.description.message}</p> }
       </div>
       <div className="mb-4">

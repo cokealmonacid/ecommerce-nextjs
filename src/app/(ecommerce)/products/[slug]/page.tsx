@@ -29,7 +29,7 @@ const ProductDetail = async ({ params }: { params: {slug: string} }) => {
               <h2 className="uppercase text-3xl font-weight text-stone-900 mb-8">{productSelected.title}</h2>
               <h3 className="text-stone-500 text-3xl">{priceFormatter(productSelected.price)}</h3>
               <Divider />
-              <p className="my-10">{productSelected.description}</p>
+              <div className="my-10" dangerouslySetInnerHTML={{ __html: productSelected.description }}></div>
             </div>
             <AddToCartButton product={productSelected} />
           </div>
