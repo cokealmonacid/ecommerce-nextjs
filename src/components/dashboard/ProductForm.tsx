@@ -98,7 +98,10 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
           name="description"
           rules={{ required: "Debes agregar una descripción" }}
           defaultValue={product && product.description ? product.description : ""}
-          render={({ field }) => <Editor {...field}  />}
+          render={({ field }) => {
+            const { ref, ...rest } = field;
+            return (<Editor {...rest}  />);
+          }}
         />
         { errors.description && <p className="text-red-500 font-semibold text-xs">{errors.description.message}</p> }
       </div>
