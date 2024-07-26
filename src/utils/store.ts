@@ -13,63 +13,66 @@ export const useCartStore = create(persist<Cart & Actions>((set, get) => ({
   ...INITIAL_STATE,
   addToCart(item) {
     const productsInCart = get().products;
+    let products = [...productsInCart, item];
     const productFiltered = productsInCart.filter((product) => product.id === item.id);
+    const totalPrice = item.sale ? get().totalPrice + item.sale : get().totalPrice + item.price;
+    const totalItems = get().totalItems + 1;
 
     if (productFiltered.length) {
-      const products = productsInCart.map((product) => {
+      products = productsInCart.map((product) => {
         if (product.id === item.id) {
           product.quantity += 1;
         }
 
         return product;
       });
-      set((state) => ({
-        products: [...products],
-        totalItems: state.totalItems + 1,
-        totalPrice: state.totalPrice + item.price
-      }));
-    } else {
-      set((state) => ({
-        products: [...state.products, item],
-        totalItems: state.totalItems + 1,
-        totalPrice: state.totalPrice + item.price
-      }));
     }
+
+    set(() => ({
+      products: [...products],
+      totalItems,
+      totalPrice
+    }));
   },
   removeFromCart(item) {
     const productsInCart = get().products;
-    const productsFiltered = productsInCart.filter((product) => product.id === item.id);
+    let products = productsInCart.filter((product) => product.id === item.id);
+    let totalPrice = item.sale ? get().totalPrice - item.sale : get().totalPrice - item.price;
+    const totalItems = get().totalItems - 1;
 
-    if (productsFiltered.length) {
-      const products = productsInCart.map((product) => {
+    if (products.length) {
+      products = productsInCart.map((product) => {
         if (product.id === item.id) {
           product.quantity -= 1;
         }
 
         return product;
       });
-
-      set((state) => ({
-        products: [...products],
-        totalItems: state.totalItems - 1,
-        totalPrice: state.totalPrice - item.price
-      }));
-    } else {
-      set((state) => ({
-        products: productsFiltered,
-        totalItems: state.totalItems - 1,
-        totalPrice: state.totalPrice - item.price
-      }));
     }
+
+    if (!products.length) {
+      totalPrice = 0;
+    }
+
+    set(() => ({
+      products: [...products],
+      totalItems,
+      totalPrice
+    }));
   },
   deleteFromCart(item) {
     const productsInCart = get().products;
-    const productsFiltered = productsInCart.filter((product) => product.id !== item.id);
+    const products = productsInCart.filter((product) => product.id !== item.id);
+    let totalPrice = item.sale ? get().totalPrice - item.sale : get().totalPrice - item.price;
+
+    if (!products.length) {
+      totalPrice = 0;
+    }
 
     set((state) => ({
-      products: [...productsFiltered],
+      products: [...products],
       totalItems: state.totalItems - item.quantity,
-      totalPrice: state.totalPrice - item.price
+      totalPrice
     }));
   }
 }), { name: "cart" }));

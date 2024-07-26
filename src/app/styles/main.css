@@ -1,5 +1,6 @@
 .button {
-  @apply bg-stone-500;
+  /* @apply bg-stone-500; */
+  @apply bg-amber-300;
   @apply text-white;
   @apply py-4;
   @apply px-12; 

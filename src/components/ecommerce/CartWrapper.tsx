@@ -25,6 +25,8 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
     window.location.href=`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
   };
 
+  console.log(products);
+
   return (
     <section className="py-12 lg:w-3/4 lg:mx-auto">
       <div className="flex flex-col items-center">
@@ -44,7 +46,7 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
                   <Image src={product.img} alt={product.title} className="object-contain" width={200} height={300}/>
                   <div className="hidden md:block ml-4">
                     <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
-                    <h3 className="font-semibold uppercase text-xl text-stone-500">{priceFormatter(product.price)}</h3>
+                    <h3 className="font-semibold uppercase text-xl text-stone-500">{product.sale ? priceFormatter(product.sale) : priceFormatter(product.price)}</h3>
                     <div className="flex gap-5">
                       <CounterCart product={product} />
                       <button type="button" onClick={() => handleDeleteFromCartClick(product)} className="ml-2 cursor-pointer"><Remove /></button>
@@ -53,11 +55,11 @@ const CartWrapper = ({ products }: CartWrapperProps) => {
                 </div>
                 <div className="flex flex-col items-center justify-center my-5 md:my-0 md:hidden">
                   <h2 className="font-semibold uppercase text-xl">{product.title}</h2>
-                  <h3>{product.quantity} x ${product.price * product.quantity}</h3>
+                  <h3>{product.quantity} x ${product.sale ? product.sale * product.quantity : product.price * product.quantity}</h3>
                   <CounterCart product={product} />
                   <div onClick={() => handleDeleteFromCartClick(product)} className="cursor-pointer md:hidden my-4"><Remove /></div>
                 </div>
-                <h3 className="hidden md:block">{product.quantity} x {priceFormatter(product.price * product.quantity)}</h3>
+                <h3 className="hidden md:block">{product.quantity} x {priceFormatter(product.sale ? product.sale * product.quantity : product.price * product.quantity)}</h3>
               </div>
             )
           )

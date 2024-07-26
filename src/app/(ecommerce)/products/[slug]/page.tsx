@@ -1,11 +1,11 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 
-import { priceFormatter } from "@/utils/helpers";
+import { getProductBySlug, getRelatedProducts } from "@/models/product";
 import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import AddToCartButton from "@/components/ecommerce/AddToCartButton";
+import { PriceProductDetail } from "@/components/ecommerce/Price";
 import Divider from "@/components/ecommerce/Divider";
-import { getProductBySlug, getRelatedProducts } from "@/models/product";
 
 export const metadata: Metadata = {
   title: "Productos | Delakalle Skateshop 🛹",
@@ -27,7 +27,7 @@ const ProductDetail = async ({ params }: { params: {slug: string} }) => {
             <div className="flex flex-col justify-center md:justify-start">
               <h1 className="text-stone-400 mb-4">{productSelected.brand}</h1>
               <h2 className="uppercase text-3xl font-weight text-stone-900 mb-8">{productSelected.title}</h2>
-              <h3 className="text-stone-500 text-3xl">{priceFormatter(productSelected.price)}</h3>
+              <PriceProductDetail product={productSelected} />
               <Divider />
               <div className="my-10" dangerouslySetInnerHTML={{ __html: productSelected.description }}></div>
             </div>

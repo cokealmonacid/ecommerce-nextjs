@@ -2,10 +2,10 @@
 
 import { toast } from "react-toastify";
 
-import { AddToCartButtonProps } from "@/utils/interfaces";
+import { ProductProps } from "@/utils/interfaces";
 import { useCartStore } from "@/utils/store";
 
-const AddToCartButton = ({ product }: AddToCartButtonProps) => {
+const AddToCartButton = ({ product }: ProductProps) => {
   const { addToCart } = useCartStore();
 
   const handleAddToCartClick = () => {
@@ -16,6 +16,7 @@ const AddToCartButton = ({ product }: AddToCartButtonProps) => {
       category_id: product.category_id,
       brand: product.brand,
       price: product.price,
+      sale: product.sale,
       quantity: 1
     });
 

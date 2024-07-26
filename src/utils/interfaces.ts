@@ -22,6 +22,7 @@ export interface Product {
   brand: string;
   price: number;
   slug: string;
+  sale: number | null;
   active: boolean;
 }
 
@@ -49,6 +50,7 @@ export interface CartItem {
   category_id: string;
   brand: string;
   price: number;
+  sale: number | null;
   quantity: number;
 }
 
@@ -81,7 +83,7 @@ export interface NavbarProps {
   categories: Category[];
 }
 
-export interface AddToCartButtonProps {
+export interface ProductProps {
   product: Product;
 }
 
@@ -138,6 +140,7 @@ export interface ProductFormInputs extends ImageInputValues {
   category_id?: string;
   slug?: string;
   price?: number;
+  sale?: number;
   description?: string;
 };
 

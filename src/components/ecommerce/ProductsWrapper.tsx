@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Product, ProductsWrapperProps } from "@/utils/interfaces";
-import { priceFormatter } from "@/utils/helpers";
+import { PriceProductWrapper } from "./Price";
 import Divider from "./Divider";
 
 
@@ -26,7 +26,7 @@ const ProductsWrapper = ({ title, products, showed_products, button }: ProductsW
                 <span className="absolute -bottom-1 left-1/2 w-0 h-1 bg-zinc-600 group-hover:w-1/2 group-hover:transition-all"></span>
                 <span className="absolute -bottom-1 right-1/2 w-0 h-1 bg-zinc-600 group-hover:w-1/2 group-hover:transition-all"></span>
               </h2>
-              <p className="text-stone-400 mt-2">{priceFormatter(product.price)}</p>
+              <PriceProductWrapper product={product} />
             </Link>
           ))
         }

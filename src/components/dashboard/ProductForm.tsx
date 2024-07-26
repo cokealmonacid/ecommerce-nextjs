@@ -38,12 +38,14 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
   };
 
   const onSubmit: SubmitHandler<ProductFormInputs> = values => {
+    console.log(values);
     const data = new FormData();
     data.set("file", values.Image ? values.Image[0] : "");
     data.set("title", values.title ?? "");
     data.set("category_id", values.category_id ?? "");
     data.set("brand", values.brand ?? "");
     data.set("price", String(values.price) ?? "");
+    data.set("sale", String(values.sale) ?? "");
     data.set("description", values.description ?? "");
     data.set("slug", slugify(values.title ?? ""));
 
@@ -90,6 +92,10 @@ const ProductForm = ({ categories, product }: ProductFormProps) => {
         <label className="dashboard-label">Precio</label>
         <input className="dashboard-input"  type="number" {...register("price", { required: "Debes agregar un precio" })} defaultValue={product && product.price ? product.price.toString() : ""}/>
         { errors.price && <p className="text-red-500 font-semibold text-xs">{errors.price.message}</p> }
+      </div>
+      <div className="mb-4">
+        <label className="dashboard-label">Descuento (opcional)</label>
+        <input className="dashboard-input"  type="number" {...register("sale")} defaultValue={product && product.sale ? product.sale.toString() : ""}/>
       </div>
       <div className="mb-4">
         <label className="dashboard-label">Descripción</label>

@@ -29,6 +29,7 @@ model Product {
   description String
   brand       String
   price       Int
+  sale        Int? 
   slug        String
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
