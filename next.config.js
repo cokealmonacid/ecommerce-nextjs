@@ -17,7 +17,7 @@ const nextConfig = {
                 },
                 {
                     key: "Access-Control-Allow-Origin",
-                    value: "www.delakalleskateshop.cl",
+                    value: "*",
                 },
                 {
                     key: "Access-Control-Allow-Methods",
