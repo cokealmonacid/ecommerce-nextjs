@@ -1,11 +1,11 @@
-import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
+// import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import Slider from "@/components/ecommerce/Slider";
 import { getAllSliders } from "@/models/imageSlider";
-import { getLastProducts } from "@/models/product";
+// import { getLastProducts } from "@/models/product";
 
 export default async function Home() {
   const imagesSlider = await getAllSliders();
-  const products = await getLastProducts();
+  // const products = await getLastProducts();
 
   return (
     <main>
