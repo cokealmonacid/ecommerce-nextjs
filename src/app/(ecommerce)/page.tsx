@@ -10,13 +10,14 @@ export default async function Home() {
   return (
     <main>
       { imagesSlider.length ? <Slider imagesSlider={imagesSlider} /> : null}
-      <ProductsWrapper
+      {/* <ProductsWrapper
         title={"ultimos productos"}
         button={{ title: "Ver más productos", url: "/products" }}
         products={products}
         showed_products={4}
         show_button
-      />
+      /> */}
+      <h1>Test</h1>
     </main>
   );
 }
