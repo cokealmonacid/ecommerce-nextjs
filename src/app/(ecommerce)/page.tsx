@@ -1,23 +1,22 @@
-// import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
+import ProductsWrapper from "@/components/ecommerce/ProductsWrapper";
 import Slider from "@/components/ecommerce/Slider";
 import { getAllSliders } from "@/models/imageSlider";
-// import { getLastProducts } from "@/models/product";
+import { getLastProducts } from "@/models/product";
 
 export default async function Home() {
   const imagesSlider = await getAllSliders();
-  // const products = await getLastProducts();
+  const products = await getLastProducts();
 
   return (
     <main>
       { imagesSlider.length ? <Slider imagesSlider={imagesSlider} /> : null}
-      {/* <ProductsWrapper
+      <ProductsWrapper
         title={"ultimos productos"}
         button={{ title: "Ver más productos", url: "/products" }}
         products={products}
         showed_products={4}
         show_button
-      /> */}
-      <h1>TEST</h1>
+      />
     </main>
   );
 }
