@@ -17,7 +17,7 @@ export default async function Home() {
         showed_products={4}
         show_button
       /> */}
-      <h1>Test</h1>
+      <h1>TEST</h1>
     </main>
   );
 }
