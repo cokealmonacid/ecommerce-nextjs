@@ -58,7 +58,7 @@ type NonEmptyObject<T> = {
 
 export function validateNonEmptyObject<T>(obj: NonEmptyObject<T>): boolean {
   for (const key in obj) {
-    if (!obj[key]) {
+    if (!obj[key] && key !== "sale") {
       return false;
     }
   }

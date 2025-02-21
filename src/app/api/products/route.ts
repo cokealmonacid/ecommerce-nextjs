@@ -30,9 +30,9 @@ export const POST = async (req: NextRequest) => {
       category_id: data.get("category_id")?.toString() ?? "",
       brand: data.get("brand")?.toString() ?? "",
       price: Number(data.get("price")) ?? 0,
-      sale: Number(data.get("sale")) ?? null,
       description: data.get("description")?.toString() ?? "",
       slug: data.get("slug")?.toString() ?? "",
+      sale: Number(data.get("sale")),
       active: true
     };
 
